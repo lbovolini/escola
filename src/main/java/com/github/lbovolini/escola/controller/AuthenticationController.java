@@ -25,7 +25,7 @@ public class AuthenticationController {
         try {
             authenticationService.validate(credentials);
             String token = authenticationService.generateToken(credentials.getEmail());
-            return Response.ok().header(HttpHeaders.AUTHORIZATION, token).build();
+            return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
         } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }

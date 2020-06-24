@@ -23,9 +23,14 @@ public class JWTFilter implements Filter {
 
         String token = req.getHeader(HttpHeaders.AUTHORIZATION);
 
+        if (token == null) {
+            res.setStatus(401);
+            return;
+        }
+
         try {
             Jws<Claims> parser = AuthenticationService.decode(token);
-            filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(req, res);
         } catch (Exception e) {
             res.setStatus(401);
         }

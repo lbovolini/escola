@@ -46,15 +46,12 @@ public class AuthenticationService {
         Calendar expira = Calendar.getInstance();
         expira.add(Calendar.DAY_OF_MONTH, VALID_DAYS);
 
-        String token = BEARER_PREFIX + " ";
-        token += Jwts.builder()
+        return Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(new Date()) // gerado em
                 .setExpiration(expira.getTime()) // expira em
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
-
-        return token;
     }
 
     public static Jws<Claims> decode(String token) {
