@@ -6,6 +6,7 @@
     <persistence-unit name="Escola">
         <class>com.github.lbovolini.escola.model.Curso</class>
         <class>com.github.lbovolini.escola.model.Aluno</class>
+        <class>com.github.lbovolini.escola.model.Turma</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/escola"/>
             <property name="javax.persistence.jdbc.user" value="lbovolini" />

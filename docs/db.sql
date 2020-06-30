@@ -15,3 +15,14 @@ CREATE TABLE IF NOT EXISTS escola.Aluno (
   
   
 ALTER TABLE Aluno ADD password VARCHAR(255);
+
+
+CREATE TABLE IF NOT EXISTS `escola`.`Turma` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `number` VARCHAR(45) NULL,
+  `Curso_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+ENGINE = InnoDB
+
+ALTER TABLE Turma ADD FOREIGN KEY (`Curso_id`)
+REFERENCES `escola`.`Curso` (`id`)
