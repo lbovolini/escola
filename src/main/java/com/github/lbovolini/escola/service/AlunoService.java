@@ -13,6 +13,10 @@ public class AlunoService {
         this.alunoRepository = new AlunoRepositoryImpl();
     }
 
+    public void delete(int id) {
+        alunoRepository.delete(id);
+    }
+
     public AlunoDTO find(int id) {
         return alunoRepository.find(id);
     }
@@ -20,10 +24,6 @@ public class AlunoService {
     public void save(AlunoDTO alunoDTO) {
         alunoDTO.setPassword(BCrypt.hashpw(alunoDTO.getPassword(), BCrypt.gensalt(12)));
         alunoRepository.save(alunoDTO);
-    }
-
-    public void delete(int id) {
-        alunoRepository.delete(id);
     }
 
     public void update(AlunoDTO alunoDto) {

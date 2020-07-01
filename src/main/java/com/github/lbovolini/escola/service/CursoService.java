@@ -14,20 +14,20 @@ public class CursoService {
         this.cursoRepository = new CursoRepositoryImpl();
     }
 
-    public CursoDTO find(int id) {
-        return cursoRepository.find(id);
+    public void delete(int id) {
+        cursoRepository.delete(id);
     }
 
-    public void save(CursoDTO cursoDto) {
-        cursoRepository.save(cursoDto);
+    public CursoDTO find(int id) {
+        return cursoRepository.find(id);
     }
 
     public List<CursoDTO> findAll() {
         return cursoRepository.findAll();
     }
 
-    public void delete(int id) {
-        cursoRepository.delete(id);
+    public void save(CursoDTO cursoDto) {
+        cursoRepository.save(cursoDto);
     }
 
     public void update(CursoDTO cursoDto) {
