@@ -16,18 +16,6 @@ public class AlunoController {
         this.alunoService = new AlunoService();
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(final AlunoDTO alunoDto) {
-        try {
-            alunoService.save(alunoDto);
-            return Response.ok().build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.serverError().build();
-        }
-    }
-
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -48,6 +36,18 @@ public class AlunoController {
             AlunoDTO alunoDTO = alunoService.find(id);
             return Response.ok().entity(alunoDTO).build();
         } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response save(final AlunoDTO alunoDto) {
+        try {
+            alunoService.save(alunoDto);
+            return Response.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace();
             return Response.serverError().build();
         }
     }
