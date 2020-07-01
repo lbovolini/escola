@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.dto.TurmaDTO;
-import com.github.lbovolini.escola.model.Turma;
 import com.github.lbovolini.escola.service.TurmaService;
 
 import javax.ws.rs.*;
@@ -33,8 +32,8 @@ public class TurmaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
         try {
-            Turma turma = turmaService.find(id);
-            return Response.ok().entity(turma).build();
+            TurmaDTO turmaDTO = turmaService.find(id);
+            return Response.ok().entity(turmaDTO).build();
         } catch (Exception e) {
             return Response.serverError().build();
         }

@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
-import com.github.lbovolini.escola.model.Curso;
 import com.github.lbovolini.escola.service.CursoService;
 
 import javax.ws.rs.*;
@@ -46,8 +45,8 @@ public class CursoController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
         try {
-            Curso curso = cursoService.find(id);
-            return Response.ok().entity(curso).build();
+            CursoDTO cursoDTO = cursoService.find(id);
+            return Response.ok().entity(cursoDTO).build();
         } catch (Exception e) {
             return Response.serverError().build();
         }

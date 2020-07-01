@@ -1,14 +1,14 @@
 package com.github.lbovolini.escola.repository;
 
-import com.github.lbovolini.escola.model.Turma;
+import com.github.lbovolini.escola.dto.TurmaDTO;
 
 public interface TurmaRepository {
 
     void delete(int id);
 
-    Turma find(int id);
+    TurmaDTO find(int id);
 
-    Turma save(Turma turma);
+    void save(TurmaDTO turmaDTO);
 
-    void update(Turma turma);
+    void update(TurmaDTO turmaDTO);
 }

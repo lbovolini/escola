@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
-import com.github.lbovolini.escola.model.Curso;
 import com.github.lbovolini.escola.repository.CursoRepository;
 import com.github.lbovolini.escola.repository.CursoRepositoryImpl;
 
@@ -15,34 +14,23 @@ public class CursoService {
         this.cursoRepository = new CursoRepositoryImpl();
     }
 
-    public Curso find(int id) {
+    public CursoDTO find(int id) {
         return cursoRepository.find(id);
     }
 
     public void save(CursoDTO cursoDto) {
-
-        Curso curso = new Curso();
-        curso.setId(cursoDto.id);
-        curso.setName(cursoDto.name);
-
-        cursoRepository.save(curso);
+        cursoRepository.save(cursoDto);
     }
 
-    public List<Curso> findAll() {
+    public List<CursoDTO> findAll() {
         return cursoRepository.findAll();
     }
-
 
     public void delete(int id) {
         cursoRepository.delete(id);
     }
 
     public void update(CursoDTO cursoDto) {
-
-        Curso curso = new Curso();
-        curso.setId(cursoDto.id);
-        curso.setName(cursoDto.name);
-
-        cursoRepository.update(curso);
+        cursoRepository.update(cursoDto);
     }
 }

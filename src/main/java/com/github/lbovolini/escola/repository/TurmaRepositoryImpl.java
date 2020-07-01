@@ -1,6 +1,8 @@
 package com.github.lbovolini.escola.repository;
 
+import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.model.Turma;
+import com.github.lbovolini.escola.util.TurmaUtil;
 
 public class TurmaRepositoryImpl extends RepositoryBase<Turma> implements TurmaRepository {
 
@@ -11,19 +13,28 @@ public class TurmaRepositoryImpl extends RepositoryBase<Turma> implements TurmaR
     }
 
     @Override
-    public Turma find(int id) {
+    public TurmaDTO find(int id) {
         String query = "SELECT t FROM Turma t WHERE t.id = " + id;
-        return (Turma)executeSingle(query);
+        Turma turma = (Turma)executeSingle(query);
+
+        return TurmaUtil.toDTO(turma);
     }
 
     @Override
-    public void update(Turma turma) {
-        Turma turma1 = find(turma.getId());
+    public void save(TurmaDTO turmaDTO) {
+        Turma turma = TurmaUtil.toModel(turmaDTO);
+        super.save(turma);
+    }
 
-        if (turma1 == null) {
+    @Override
+    public void update(TurmaDTO turmaDTO) {
+        TurmaDTO turmaDTO1 = find(turmaDTO.getId());
+
+        if (turmaDTO1 == null) {
             return;
         }
 
+        Turma turma = TurmaUtil.toModel(turmaDTO);
         super.update(turma);
     }
 

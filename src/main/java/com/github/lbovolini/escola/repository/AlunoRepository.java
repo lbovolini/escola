@@ -1,16 +1,16 @@
 package com.github.lbovolini.escola.repository;
 
-import com.github.lbovolini.escola.model.Aluno;
+import com.github.lbovolini.escola.dto.AlunoDTO;
 
 public interface AlunoRepository {
 
-    Aluno find(int id);
-
-    Aluno save(Aluno aluno);
-
     void delete(int id);
 
-    void update(Aluno aluno);
+    AlunoDTO find(int id);
 
     String findPassword(String email);
+
+    void save(AlunoDTO aluno);
+
+    void update(AlunoDTO alunoDTO);
 }

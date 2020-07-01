@@ -1,6 +1,8 @@
 package com.github.lbovolini.escola.repository;
 
+import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.model.Aluno;
+import com.github.lbovolini.escola.util.AlunoUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,30 +12,15 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
     @Override
     public void delete(int id) {
         String query = "DELETE FROM Aluno a WHERE a.id = " + id;
-
         executeDelete(query);
     }
 
     @Override
-    public Aluno find(int id) {
-
+    public AlunoDTO find(int id) {
         String query = "SELECT a FROM Aluno a WHERE a.id = " + id;
-
         Aluno aluno = (Aluno)executeSingle(query);
 
-        return aluno;
-    }
-
-    @Override
-    public void update(Aluno aluno) {
-
-        Aluno aluno1 = find(aluno.getId());
-
-        if (aluno1 == null) {
-            return;
-        }
-
-        super.update(aluno);
+        return AlunoUtil.toDTO(aluno);
     }
 
     @Override
@@ -47,4 +34,24 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
 
         return password;
     }
+
+    @Override
+    public void save(AlunoDTO alunoDTO) {
+        Aluno aluno = AlunoUtil.toModel(alunoDTO);
+        super.save(aluno);
+    }
+
+    @Override
+    public void update(AlunoDTO alunoDTO) {
+
+        AlunoDTO alunoDTO1 = find(alunoDTO.getId());
+
+        if (alunoDTO1 == null) {
+            return;
+        }
+
+        Aluno aluno = AlunoUtil.toModel(alunoDTO);
+        super.update(aluno);
+    }
+
 }

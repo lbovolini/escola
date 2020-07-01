@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.TurmaDTO;
-import com.github.lbovolini.escola.model.Turma;
 import com.github.lbovolini.escola.repository.TurmaRepository;
 import com.github.lbovolini.escola.repository.TurmaRepositoryImpl;
 
@@ -17,25 +16,16 @@ public class TurmaService {
         turmaRepository.delete(id);
     }
 
-    public Turma find(int id) {
+    public TurmaDTO find(int id) {
         return turmaRepository.find(id);
     }
 
     public void save(TurmaDTO turmaDTO) {
-        Turma turma = new Turma();
-        turma.setNumber(turmaDTO.number);
-        turma.setCurso(turmaDTO.curso);
-
-        turmaRepository.save(turma);
+        turmaRepository.save(turmaDTO);
     }
 
     public void update(TurmaDTO turmaDTO) {
-        Turma turma = new Turma();
-        turma.setId(turmaDTO.id);
-        turma.setNumber(turmaDTO.number);
-        turma.setCurso(turmaDTO.curso);
-
-        turmaRepository.update(turma);
+        turmaRepository.update(turmaDTO);
     }
 
 }

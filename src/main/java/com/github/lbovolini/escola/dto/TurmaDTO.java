@@ -1,9 +1,39 @@
 package com.github.lbovolini.escola.dto;
 
-import com.github.lbovolini.escola.model.Curso;
-
 public class TurmaDTO {
-    public int id;
-    public String number;
-    public Curso curso;
+
+    private int id;
+    private String number;
+    private CursoDTO cursoDTO;
+
+    public TurmaDTO() {
+    }
+
+    public TurmaDTO(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public CursoDTO getCursoDTO() {
+        return cursoDTO;
+    }
+
+    public void setCursoDTO(CursoDTO cursoDTO) {
+        this.cursoDTO = cursoDTO;
+    }
 }
