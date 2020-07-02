@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Aluno {
@@ -17,6 +18,9 @@ public class Aluno {
     @OneToOne
     @JoinColumn(name = "Curso_id", referencedColumnName = "id")
     private Curso curso;
+
+    @OneToMany(mappedBy = "aluno")
+    private Set<AlunoTurma> alunoTurmas;
 
     public int getId() {
         return id;
@@ -64,5 +68,13 @@ public class Aluno {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Set<AlunoTurma> getAlunoTurmas() {
+        return alunoTurmas;
+    }
+
+    public void setAlunoTurmas(Set<AlunoTurma> alunoTurmas) {
+        this.alunoTurmas = alunoTurmas;
     }
 }

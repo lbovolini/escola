@@ -26,3 +26,14 @@ ENGINE = InnoDB
 
 ALTER TABLE Turma ADD FOREIGN KEY (`Curso_id`)
 REFERENCES `escola`.`Curso` (`id`)
+
+
+CREATE TABLE IF NOT EXISTS `escola`.`AlunoTurma` (
+  `Aluno_id` INT NOT NULL,
+  `Turma_id` INT NOT NULL,
+  PRIMARY KEY (`Aluno_id`, `Turma_id`),
+  FOREIGN KEY (`Aluno_id`)
+  REFERENCES `escola`.`Aluno` (`id`),
+  FOREIGN KEY (`Turma_id`)
+  REFERENCES `escola`.`Turma` (`id`)
+);

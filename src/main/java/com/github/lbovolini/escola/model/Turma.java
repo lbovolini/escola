@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Turma {
@@ -12,6 +13,9 @@ public class Turma {
     @ManyToOne
     @JoinColumn(name = "Curso_id", referencedColumnName = "id")
     private Curso curso;
+
+    @OneToMany(mappedBy = "turma")
+    private Set<AlunoTurma> alunoTurmas;
 
     public int getId() {
         return id;
@@ -35,5 +39,13 @@ public class Turma {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Set<AlunoTurma> getAlunoTurmas() {
+        return alunoTurmas;
+    }
+
+    public void setAlunoTurmas(Set<AlunoTurma> alunoTurmas) {
+        this.alunoTurmas = alunoTurmas;
     }
 }
