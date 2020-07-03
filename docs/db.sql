@@ -37,3 +37,11 @@ CREATE TABLE IF NOT EXISTS `escola`.`AlunoTurma` (
   FOREIGN KEY (`Turma_id`)
   REFERENCES `escola`.`Turma` (`id`)
 );
+
+
+CREATE TABLE IF NOT EXISTS `escola`.`Professor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`)
+);
+
