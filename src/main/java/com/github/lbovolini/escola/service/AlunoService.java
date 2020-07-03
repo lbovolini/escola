@@ -1,9 +1,12 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import java.util.List;
 
 public class AlunoService {
 
@@ -19,6 +22,10 @@ public class AlunoService {
 
     public AlunoDTO find(int id) {
         return alunoRepository.find(id);
+    }
+
+    public List<TurmaDTO> findTurmas(int alunoId) {
+        return alunoRepository.findTurmas(alunoId);
     }
 
     public void save(AlunoDTO alunoDTO) {

@@ -1,6 +1,9 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.TurmaDTO;
+
+import java.util.List;
 
 public interface AlunoRepository {
 
@@ -9,6 +12,8 @@ public interface AlunoRepository {
     AlunoDTO find(int id);
 
     String findPassword(String email);
+
+    List<TurmaDTO> findTurmas(int id);
 
     void save(AlunoDTO aluno);
 

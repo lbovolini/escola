@@ -1,11 +1,15 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.model.Aluno;
+import com.github.lbovolini.escola.model.Turma;
 import com.github.lbovolini.escola.util.AlunoUtil;
+import com.github.lbovolini.escola.util.TurmaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoRepository {
 
@@ -33,6 +37,15 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
         String password = (String)executeSingle(query, parameters);
 
         return password;
+    }
+
+    @Override
+    public List<TurmaDTO> findTurmas(int alunoId) {
+        String query = "SELECT t FROM AlunoTurma at JOIN Turma t ON at.turma = t.id JOIN Aluno a ON a.id = at.aluno WHERE a.id = " + alunoId;
+        List<Turma> turmaList = execute(query);
+        List<TurmaDTO> turmaDTOList = turmaList.stream().map(TurmaUtil::toDTO).collect(Collectors.toList());
+
+        return turmaDTOList;
     }
 
     @Override
