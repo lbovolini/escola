@@ -8,6 +8,7 @@
         <class>com.github.lbovolini.escola.model.Aluno</class>
         <class>com.github.lbovolini.escola.model.Turma</class>
         <class>com.github.lbovolini.escola.model.AlunoTurma</class>
+        <class>com.github.lbovolini.escola.model.Professor</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/escola"/>
             <property name="javax.persistence.jdbc.user" value="lbovolini" />
