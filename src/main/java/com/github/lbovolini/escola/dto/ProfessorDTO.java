@@ -5,6 +5,13 @@ public class ProfessorDTO {
     private int id;
     private String name;
 
+    public ProfessorDTO() {
+    }
+
+    public ProfessorDTO(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
