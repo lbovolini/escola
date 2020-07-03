@@ -17,17 +17,6 @@ public class CursoController {
         this.cursoService = new CursoService();
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response create(final CursoDTO cursoDto) {
-        try {
-            cursoService.save(cursoDto);
-            return Response.ok().build();
-        } catch (Exception e) {
-            return Response.serverError().build();
-        }
-    }
-
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,6 +46,17 @@ public class CursoController {
     public List findAll()
     {
         return cursoService.findAll();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response save(final CursoDTO cursoDto) {
+        try {
+            cursoService.save(cursoDto);
+            return Response.ok().build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
     }
 
     @PUT
