@@ -23,15 +23,15 @@ public class DisciplinaService {
         return disciplinaRepository.find(id);
     }
 
+    public List<AulaDTO> findAulas(int disciplinaId, int alunoId) {
+        return disciplinaRepository.findAulas(disciplinaId, alunoId);
+    }
+    
     public void save(DisciplinaDTO disciplinaDTO) {
         disciplinaRepository.save(disciplinaDTO);
     }
 
     public void update(DisciplinaDTO disciplinaDTO) {
         disciplinaRepository.update(disciplinaDTO);
-    }
-
-    public List<AulaDTO> findAulas(int disciplinaId, int alunoId) {
-        return disciplinaRepository.findAulas(disciplinaId, alunoId);
     }
 }
