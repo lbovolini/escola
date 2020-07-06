@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.service.AlunoService;
 
@@ -36,6 +37,18 @@ public class AlunoController {
         try {
             AlunoDTO alunoDTO = alunoService.find(id);
             return Response.ok().entity(alunoDTO).build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/{id}/disciplinas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findDisciplinas(@PathParam("id") int id) {
+        try {
+            List<DisciplinaDTO> disciplinaDTOList= alunoService.findDisciplinas(id);
+            return Response.ok().entity(disciplinaDTOList).build();
         } catch (Exception e) {
             return Response.serverError().build();
         }

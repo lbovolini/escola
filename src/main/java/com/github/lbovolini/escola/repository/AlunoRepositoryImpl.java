@@ -1,10 +1,13 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.model.Aluno;
+import com.github.lbovolini.escola.model.Disciplina;
 import com.github.lbovolini.escola.model.Turma;
 import com.github.lbovolini.escola.util.AlunoUtil;
+import com.github.lbovolini.escola.util.DisciplinaUtil;
 import com.github.lbovolini.escola.util.TurmaUtil;
 
 import java.util.ArrayList;
@@ -25,6 +28,15 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
         Aluno aluno = (Aluno)executeSingle(query);
 
         return AlunoUtil.toDTO(aluno);
+    }
+
+    @Override
+    public List<DisciplinaDTO> findDisciplinas(int alunoId) {
+        String query = "SELECT d FROM Matricula m JOIN Disciplina d ON m.disciplina = d.id JOIN Aluno a ON m.aluno = a.id WHERE a.id = " + alunoId;
+        List<Disciplina> disciplinaList = execute(query);
+        List<DisciplinaDTO> disciplinaDTOList = disciplinaList.stream().map(DisciplinaUtil::toDTO).collect(Collectors.toList());
+
+        return disciplinaDTOList;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
@@ -24,6 +25,10 @@ public class AlunoService {
         return alunoRepository.find(id);
     }
 
+    public List<DisciplinaDTO> findDisciplinas(int id) {
+        return alunoRepository.findDisciplinas(id);
+    }
+
     public List<TurmaDTO> findTurmas(int alunoId) {
         return alunoRepository.findTurmas(alunoId);
     }
@@ -36,4 +41,5 @@ public class AlunoService {
     public void update(AlunoDTO alunoDto) {
         alunoRepository.update(alunoDto);
     }
+
 }
