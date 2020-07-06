@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class AlunoTurmaId implements Serializable {
 
     @Column(name = "Aluno_id")
-    int alunoId;
+    private int alunoId;
     @Column(name = "Turma_id")
-    int turmaId;
+    private int turmaId;
 
     public int getAlunoId() {
         return alunoId;
