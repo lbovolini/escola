@@ -1,11 +1,13 @@
 package com.github.lbovolini.escola.controller;
 
+import com.github.lbovolini.escola.dto.AulaDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.service.DisciplinaService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/api/v1/disciplinas")
 public class DisciplinaController {
@@ -34,6 +36,18 @@ public class DisciplinaController {
         try {
             DisciplinaDTO disciplinaDTO = disciplinaService.find(id);
             return Response.ok().entity(disciplinaDTO).build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/{id}/aulas/{alunoId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("alunoId") int alunoId) {
+        try {
+            List<AulaDTO> aulaDTOList = disciplinaService.findAulas(disciplinaId, alunoId);
+            return Response.ok().entity(aulaDTOList).build();
         } catch (Exception e) {
             return Response.serverError().build();
         }
