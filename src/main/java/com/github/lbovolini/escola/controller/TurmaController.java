@@ -51,7 +51,6 @@ public class TurmaController {
     }
 
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(TurmaDTO turmaDTO) {
         try {
