@@ -51,3 +51,26 @@ CREATE TABLE IF NOT EXISTS `escola`.`Disciplina` (
   PRIMARY KEY (`id`)
 );
 
+
+CREATE TABLE IF NOT EXISTS `escola`.`Aula` (
+  `Aluno_id` INT NOT NULL,
+  `Disciplina_id` INT NOT NULL,
+  `day` DATE NULL,
+  PRIMARY KEY (`Aluno_id`, `Disciplina_id`),
+  FOREIGN KEY (`Aluno_id`)
+  REFERENCES `escola`.`Aluno` (`id`),
+  FOREIGN KEY (`Disciplina_id`)
+  REFERENCES `escola`.`Disciplina` (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `escola`.`Matricula` (
+  `Aluno_id` INT NOT NULL,
+  `Disciplina_id` INT NOT NULL,
+  PRIMARY KEY (`Aluno_id`, `Disciplina_id`),
+  FOREIGN KEY (`Aluno_id`)
+  REFERENCES `escola`.`Aluno` (`id`),
+  FOREIGN KEY (`Disciplina_id`)
+  REFERENCES `escola`.`Disciplina` (`id`)
+);
+
+
