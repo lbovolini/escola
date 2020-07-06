@@ -20,7 +20,6 @@ public class AlunoController {
 
     @DELETE
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
             alunoService.delete(id);
@@ -67,7 +66,6 @@ public class AlunoController {
     }
 
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response update(final AlunoDTO alunoDto) {
         try {
