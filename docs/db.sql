@@ -73,4 +73,13 @@ CREATE TABLE IF NOT EXISTS `escola`.`Matricula` (
   REFERENCES `escola`.`Disciplina` (`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `escola`.`Ministra` (
+  `Disciplina_id` INT NOT NULL,
+  `Professor_id` INT NOT NULL,
+  PRIMARY KEY (`Disciplina_id`, `Professor_id`),
+  FOREIGN KEY (`Disciplina_id`)
+  REFERENCES `escola`.`Disciplina` (`id`),
+  FOREIGN KEY (`Professor_id`)
+  REFERENCES `escola`.`Professor` (`id`)
+);
 
