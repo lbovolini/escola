@@ -1,10 +1,8 @@
 package com.github.lbovolini.escola.model;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 
+@Entity
 public class Matricula {
 
     @EmbeddedId
