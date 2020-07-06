@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Aula {
@@ -18,9 +17,6 @@ public class Aula {
     @MapsId("Disciplina_id")
     @JoinColumn(name = "Disciplina_id")
     private Disciplina disciplina;
-
-    @MapsId("day")
-    private Date day;
 
     public AulaId getAulaId() {
         return aulaId;
@@ -44,13 +40,5 @@ public class Aula {
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
-    }
-
-    public Date getDay() {
-        return day;
-    }
-
-    public void setDay(Date day) {
-        this.day = day;
     }
 }
