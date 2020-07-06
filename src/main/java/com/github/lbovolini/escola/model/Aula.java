@@ -19,6 +19,7 @@ public class Aula {
     @JoinColumn(name = "Disciplina_id")
     private Disciplina disciplina;
 
+    @MapsId("day")
     private Date day;
 
     public AulaId getAulaId() {

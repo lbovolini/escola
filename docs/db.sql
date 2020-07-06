@@ -83,3 +83,8 @@ CREATE TABLE IF NOT EXISTS `escola`.`Ministra` (
   REFERENCES `escola`.`Professor` (`id`)
 );
 
+ALTER TABLE Aula MODIFY day DATE NOT NULL;
+
+ALTER TABLE Aula DROP PRIMARY KEY, ADD PRIMARY KEY (`Aluno_id`, `Disciplina_id`, `day`);
+
+

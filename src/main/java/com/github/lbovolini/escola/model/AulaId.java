@@ -11,6 +11,8 @@ public class AulaId implements Serializable {
     private int alunoId;
     @Column(name = "Disciplina_id")
     private int disciplinaId;
+    @Column(name = "day")
+    private int day;
 
     public int getAlunoId() {
         return alunoId;
@@ -26,5 +28,13 @@ public class AulaId implements Serializable {
 
     public void setDisciplinaId(int disciplinaId) {
         this.disciplinaId = disciplinaId;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 }
