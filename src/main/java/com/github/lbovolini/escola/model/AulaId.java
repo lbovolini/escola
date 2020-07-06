@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Date;
 
 @Embeddable
 public class AulaId implements Serializable {
@@ -12,7 +13,7 @@ public class AulaId implements Serializable {
     @Column(name = "Disciplina_id")
     private int disciplinaId;
     @Column(name = "day")
-    private int day;
+    private Date day;
 
     public int getAlunoId() {
         return alunoId;
@@ -30,11 +31,11 @@ public class AulaId implements Serializable {
         this.disciplinaId = disciplinaId;
     }
 
-    public int getDay() {
+    public Date getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(Date day) {
         this.day = day;
     }
 }
