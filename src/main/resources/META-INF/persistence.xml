@@ -13,6 +13,7 @@
         <class>com.github.lbovolini.escola.model.Matricula</class>
         <class>com.github.lbovolini.escola.model.Aula</class>
         <class>com.github.lbovolini.escola.model.Ministra</class>
+        <class>com.github.lbovolini.escola.model.GradeCurricular</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/escola"/>
             <property name="javax.persistence.jdbc.user" value="lbovolini" />
