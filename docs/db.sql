@@ -87,4 +87,19 @@ ALTER TABLE Aula MODIFY day DATE NOT NULL;
 
 ALTER TABLE Aula DROP PRIMARY KEY, ADD PRIMARY KEY (`Aluno_id`, `Disciplina_id`, `day`);
 
+CREATE TABLE IF NOT EXISTS `escola`.`GradeCurricular` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `year` INT NULL,
+  PRIMARY KEY (`id`)
+);
 
+CREATE TABLE IF NOT EXISTS `escola`.`DisciplinaGradeCurricular` (
+  `Disciplina_id` INT NOT NULL,
+  `GradeCurricular_id` INT NOT NULL,
+  PRIMARY KEY (`Disciplina_id`, `GradeCurricular_id`),
+  FOREIGN KEY (`Disciplina_id`)
+  REFERENCES `escola`.`Disciplina` (`id`),
+  FOREIGN KEY (`GradeCurricular_id`)
+  REFERENCES `escola`.`GradeCurricular` (`id`)
+);
+  
