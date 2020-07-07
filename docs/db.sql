@@ -102,4 +102,10 @@ CREATE TABLE IF NOT EXISTS `escola`.`DisciplinaGradeCurricular` (
   FOREIGN KEY (`GradeCurricular_id`)
   REFERENCES `escola`.`GradeCurricular` (`id`)
 );
+
+
+ALTER TABLE Curso ADD GradeCurricular_id INT NOT NULL;
+
+ALTER TABLE Curso ADD FOREIGN KEY (`GradeCurricular_id`) 
+REFERENCES `escola`.`GradeCurricular` (`id`);
   
