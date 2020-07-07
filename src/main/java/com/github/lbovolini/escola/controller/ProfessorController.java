@@ -6,9 +6,13 @@ import com.github.lbovolini.escola.service.ProfessorService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/api/v1/professores")
 public class ProfessorController {
+
+    private static final Logger LOGGER = Logger.getLogger(ProfessorController.class.getName());
 
     private ProfessorService professorService;
 
@@ -23,6 +27,7 @@ public class ProfessorController {
             professorService.delete(id);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -35,6 +40,7 @@ public class ProfessorController {
             ProfessorDTO professorDTO = professorService.find(id);
             return Response.ok().entity(professorDTO).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -46,6 +52,7 @@ public class ProfessorController {
             professorService.save(professorDTO);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -57,6 +64,7 @@ public class ProfessorController {
             professorService.update(professorDTO);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }

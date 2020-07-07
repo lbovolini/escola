@@ -7,9 +7,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/api/v1/cursos")
 public class CursoController {
+
+    private static final Logger LOGGER = Logger.getLogger(CursoController.class.getName());
 
     private CursoService cursoService;
 
@@ -24,6 +28,7 @@ public class CursoController {
             cursoService.delete(id);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -36,6 +41,7 @@ public class CursoController {
             CursoDTO cursoDTO = cursoService.find(id);
             return Response.ok().entity(cursoDTO).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -54,6 +60,7 @@ public class CursoController {
             cursoService.save(cursoDto);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -65,6 +72,7 @@ public class CursoController {
             cursoService.update(cursoDto);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }

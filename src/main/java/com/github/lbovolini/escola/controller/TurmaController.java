@@ -6,9 +6,13 @@ import com.github.lbovolini.escola.service.TurmaService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/api/v1/turmas")
 public class TurmaController {
+
+    private static final Logger LOGGER = Logger.getLogger(TurmaController.class.getName());
 
     private TurmaService turmaService;
 
@@ -23,6 +27,7 @@ public class TurmaController {
             turmaService.delete(id);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -35,6 +40,7 @@ public class TurmaController {
             TurmaDTO turmaDTO = turmaService.find(id);
             return Response.ok().entity(turmaDTO).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -46,6 +52,7 @@ public class TurmaController {
             turmaService.save(turmaDTO);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -57,6 +64,7 @@ public class TurmaController {
             turmaService.update(turmaDTO);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }

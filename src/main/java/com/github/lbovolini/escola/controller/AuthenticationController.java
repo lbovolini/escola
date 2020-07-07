@@ -7,9 +7,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/")
 public class AuthenticationController {
+
+    private static final Logger LOGGER = Logger.getLogger(AuthenticationController.class.getName());
 
     private AuthenticationService authenticationService;
 
@@ -27,6 +31,7 @@ public class AuthenticationController {
             String token = authenticationService.generateToken(credentials.getEmail());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
     }

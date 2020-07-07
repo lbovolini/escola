@@ -9,9 +9,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Path("/api/v1/alunos")
 public class AlunoController {
+
+    private static final Logger LOGGER = Logger.getLogger(AlunoController.class.getName());
 
     private AlunoService alunoService;
 
@@ -26,6 +30,7 @@ public class AlunoController {
             alunoService.delete(id);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -38,6 +43,7 @@ public class AlunoController {
             AlunoDTO alunoDTO = alunoService.find(id);
             return Response.ok().entity(alunoDTO).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -50,6 +56,7 @@ public class AlunoController {
             List<DisciplinaDTO> disciplinaDTOList= alunoService.findDisciplinas(id);
             return Response.ok().entity(disciplinaDTOList).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -62,6 +69,7 @@ public class AlunoController {
             List<TurmaDTO> turmaDTOList = alunoService.findTurmas(id);
             return Response.ok().entity(turmaDTOList).build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -73,7 +81,7 @@ public class AlunoController {
             alunoService.save(alunoDto);
             return Response.ok().build();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
@@ -85,6 +93,7 @@ public class AlunoController {
             alunoService.update(alunoDto);
             return Response.ok().build();
         } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
         }
     }
