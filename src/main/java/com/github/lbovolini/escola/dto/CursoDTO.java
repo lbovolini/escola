@@ -4,6 +4,7 @@ public class CursoDTO {
 
     private int id;
     private String name;
+    private GradeCurricularDTO gradeCurricularDTO;
 
     public CursoDTO() {
     }
@@ -26,5 +27,13 @@ public class CursoDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public GradeCurricularDTO getGradeCurricularDTO() {
+        return gradeCurricularDTO;
+    }
+
+    public void setGradeCurricularDTO(GradeCurricularDTO gradeCurricularDTO) {
+        this.gradeCurricularDTO = gradeCurricularDTO;
     }
 }

@@ -10,6 +10,10 @@ public class Curso {
     private int id;
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "GradeCurricular_id", referencedColumnName = "id")
+    private GradeCurricular gradeCurricular;
+
     public Curso() {}
 
     public Curso(int id) {
@@ -32,4 +36,11 @@ public class Curso {
         this.name = name;
     }
 
+    public GradeCurricular getGradeCurricular() {
+        return gradeCurricular;
+    }
+
+    public void setGradeCurricular(GradeCurricular gradeCurricular) {
+        this.gradeCurricular = gradeCurricular;
+    }
 }
