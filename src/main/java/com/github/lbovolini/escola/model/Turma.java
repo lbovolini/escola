@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Turma {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,6 +13,13 @@ public class Turma {
     @ManyToOne
     @JoinColumn(name = "Curso_id", referencedColumnName = "id")
     private Curso curso;
+
+    public Turma() {
+    }
+
+    public Turma(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

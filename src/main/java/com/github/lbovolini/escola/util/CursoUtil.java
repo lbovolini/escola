@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.model.Curso;
+import com.github.lbovolini.escola.model.GradeCurricular;
 
 public class CursoUtil {
 
@@ -18,7 +19,7 @@ public class CursoUtil {
         Curso curso = new Curso();
         curso.setId(cursoDTO.getId());
         curso.setName(cursoDTO.getName());
-        curso.setGradeCurricular(GradeCurricularUtil.toModel(cursoDTO.getGradeCurricularDTO()));
+        curso.setGradeCurricular(new GradeCurricular(cursoDTO.getGradeCurricularDTO().getId()));
 
         return curso;
     }

@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.model.Aluno;
+import com.github.lbovolini.escola.model.Curso;
 
 public class AlunoUtil {
 
@@ -24,7 +25,7 @@ public class AlunoUtil {
         aluno.setEmail(alunoDTO.getEmail());
         aluno.setPassword(alunoDTO.getPassword());
         aluno.setBirthday(alunoDTO.getBirthday());
-        aluno.setCurso(CursoUtil.toModel(alunoDTO.getCursoDTO()));
+        aluno.setCurso(new Curso(alunoDTO.getCursoDTO().getId()));
 
         return aluno;
     }

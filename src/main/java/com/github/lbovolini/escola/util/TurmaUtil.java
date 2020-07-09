@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.TurmaDTO;
+import com.github.lbovolini.escola.model.Curso;
 import com.github.lbovolini.escola.model.Turma;
 
 public class TurmaUtil {
@@ -18,7 +19,7 @@ public class TurmaUtil {
         Turma turma = new Turma();
         turma.setId(turmaDTO.getId());
         turma.setNumber(turmaDTO.getNumber());
-        turma.setCurso(CursoUtil.toModel(turmaDTO.getCursoDTO()));
+        turma.setCurso(new Curso(turmaDTO.getCursoDTO().getId()));
 
         return turma;
     }

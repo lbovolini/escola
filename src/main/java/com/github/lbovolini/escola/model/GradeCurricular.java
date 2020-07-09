@@ -13,6 +13,13 @@ public class GradeCurricular {
     private int id;
     private int year;
 
+    public GradeCurricular() {
+    }
+
+    public GradeCurricular(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
