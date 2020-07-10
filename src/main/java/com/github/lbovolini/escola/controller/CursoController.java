@@ -48,9 +48,15 @@ public class CursoController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List findAll()
+    public Response findAll()
     {
-        return cursoService.findAll();
+        try {
+            List<CursoDTO> cursoDTOList = cursoService.findAll();
+            return Response.ok().entity(cursoDTOList).build();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            return Response.serverError().build();
+        }
     }
 
     @POST
