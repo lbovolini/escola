@@ -1,6 +1,11 @@
 package com.github.lbovolini.escola.dto;
 
-import java.util.Date;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+import java.time.LocalDate;
 
 public class AlunoDTO {
 
@@ -8,7 +13,9 @@ public class AlunoDTO {
     private String name;
     private String email;
     private String password;
-    private Date birthday;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate birthday;
     private CursoDTO cursoDTO;
 
     public AlunoDTO() {
@@ -50,11 +57,11 @@ public class AlunoDTO {
         this.password = password;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

@@ -1,7 +1,7 @@
 package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Aluno {
@@ -11,8 +11,7 @@ public class Aluno {
     private String name;
     private String email;
     private String password;
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
+    private LocalDate birthday;
 
     @OneToOne
     @JoinColumn(name = "Curso_id", referencedColumnName = "id")
@@ -50,11 +49,11 @@ public class Aluno {
         this.password = password;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
