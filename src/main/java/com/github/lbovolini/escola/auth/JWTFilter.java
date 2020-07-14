@@ -29,9 +29,11 @@ public class JWTFilter implements Filter {
         }
 
         try {
-            Jws<Claims> parser = AuthenticationService.decode(token);
+            Object parser = AuthenticationService.decode(token, Role.student());
+            System.out.println("PARSER " + parser);
             filterChain.doFilter(req, res);
         } catch (Exception e) {
+            e.printStackTrace();
             res.setStatus(401);
         }
     }

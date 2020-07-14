@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
+import com.github.lbovolini.escola.auth.Role;
 import com.github.lbovolini.escola.service.AuthenticationService;
 
 import javax.ws.rs.*;
@@ -22,13 +23,13 @@ public class AuthenticationController {
     }
 
     @POST
-    @Path("login")
+    @Path("student/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(Credentials credentials) {
+    public Response studentLogin(Credentials credentials) {
         try {
-            authenticationService.validate(credentials);
-            String token = authenticationService.generateToken(credentials.getEmail());
+            authenticationService.validateStudent(credentials);
+            String token = authenticationService.generateToken(credentials.getEmail(), Role.student());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);

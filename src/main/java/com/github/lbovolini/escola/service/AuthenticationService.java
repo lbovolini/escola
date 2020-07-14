@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
+import com.github.lbovolini.escola.auth.Role;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import io.jsonwebtoken.Claims;
@@ -26,7 +27,7 @@ public class AuthenticationService {
         this.alunoRepository = new AlunoRepositoryImpl();
     }
 
-    public void validate(Credentials credentials) throws Exception {
+    public void validateStudent(Credentials credentials) throws Exception {
 
         String hash_password = alunoRepository.findPassword(credentials.email);
 
@@ -37,7 +38,7 @@ public class AuthenticationService {
         }
     }
 
-    public static String generateToken(String subject) {
+    public static String generateToken(String subject, String role) {
 
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(HASH_SHA512);
 
@@ -48,16 +49,17 @@ public class AuthenticationService {
 
         return Jwts.builder()
                 .setSubject(subject)
+                .claim("role", role)
                 .setIssuedAt(new Date()) // gerado em
                 .setExpiration(expira.getTime()) // expira em
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    public static Jws<Claims> decode(String token) {
+    public static Object decode(String token, String role) {
         String tokenString = extract(token);
         System.out.println(tokenString);
-        return Jwts.parserBuilder().setSigningKey(HASH_SHA512).build().parseClaimsJws(tokenString);
+        return Jwts.parserBuilder().setSigningKey(HASH_SHA512).require("role", role).build().parse(tokenString).getBody();
     }
 
     private static String extract(String token) {
