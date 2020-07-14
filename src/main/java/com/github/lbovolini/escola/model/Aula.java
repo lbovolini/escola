@@ -9,14 +9,14 @@ public class Aula {
     private AulaId aulaId;
 
     @ManyToOne
-    @MapsId("Aluno_id")
-    @JoinColumn(name = "Aluno_id")
-    private Aluno aluno;
-
-    @ManyToOne
     @MapsId("Disciplina_id")
     @JoinColumn(name = "Disciplina_id")
     private Disciplina disciplina;
+
+    @ManyToOne
+    @MapsId("Turma_id")
+    @JoinColumn(name = "Turma_id")
+    private Turma turma;
 
     public AulaId getAulaId() {
         return aulaId;
@@ -26,19 +26,19 @@ public class Aula {
         this.aulaId = aulaId;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
     public Disciplina getDisciplina() {
         return disciplina;
     }
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 }

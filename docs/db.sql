@@ -85,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `escola`.`Ministra` (
 
 ALTER TABLE Aula MODIFY day DATE NOT NULL;
 
-ALTER TABLE Aula DROP PRIMARY KEY, ADD PRIMARY KEY (`Aluno_id`, `Disciplina_id`, `day`);
 
 CREATE TABLE IF NOT EXISTS `escola`.`GradeCurricular` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -109,3 +108,18 @@ ALTER TABLE Curso ADD GradeCurricular_id INT NOT NULL;
 ALTER TABLE Curso ADD FOREIGN KEY (`GradeCurricular_id`) 
 REFERENCES `escola`.`GradeCurricular` (`id`);
   
+  
+ALTER TABLE Aula ADD Turma_id INT NOT NULL;
+
+ALTER TABLE Aula ADD FOREIGN KEY (`Turma_id`) REFERENCES `escola`.`Turma` (`id`);
+
+SHOW CREATE table Aula;
+
+ALTER TABLE Aula DROP FOREIGN KEY Aula_ibfk_1;
+
+ALTER TABLE Aula DROP PRIMARY KEY, ADD PRIMARY KEY (`Disciplina_id`, `Turma_id`, `day`);
+
+ALTER TABLE Aula DROP COLUMN Aluno_id;
+
+
+

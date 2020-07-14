@@ -5,7 +5,7 @@ import java.util.Date;
 public class AulaDTO {
 
     private int alunoId;
-    private int disciplinaId;
+    private int turmaId;
     private Date day;
 
     public int getAlunoId() {
@@ -16,12 +16,12 @@ public class AulaDTO {
         this.alunoId = alunoId;
     }
 
-    public int getDisciplinaId() {
-        return disciplinaId;
+    public int getTurmaId() {
+        return turmaId;
     }
 
-    public void setDisciplinaId(int disciplinaId) {
-        this.disciplinaId = disciplinaId;
+    public void setTurmaId(int turmaId) {
+        this.turmaId = turmaId;
     }
 
     public Date getDay() {

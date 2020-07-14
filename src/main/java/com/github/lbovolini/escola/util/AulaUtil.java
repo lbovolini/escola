@@ -9,7 +9,7 @@ public class AulaUtil {
     public static AulaDTO toDTO(Aula aula) {
         AulaDTO aulaDTO = new AulaDTO();
         aulaDTO.setAlunoId(aula.getAulaId().getAlunoId());
-        aulaDTO.setDisciplinaId(aula.getAulaId().getDisciplinaId());
+        aulaDTO.setTurmaId(aula.getAulaId().getTurmaId());
         aulaDTO.setDay(aula.getAulaId().getDay());
 
         return aulaDTO;
@@ -18,7 +18,7 @@ public class AulaUtil {
     public static Aula toModel(AulaDTO aulaDTO) {
         AulaId aulaId = new AulaId();
         aulaId.setAlunoId(aulaDTO.getAlunoId());
-        aulaId.setDisciplinaId(aulaDTO.getDisciplinaId());
+        aulaId.setTurmaId(aulaDTO.getTurmaId());
         aulaId.setDay(aulaDTO.getDay());
 
         Aula aula = new Aula();

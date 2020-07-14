@@ -12,8 +12,8 @@ public class AulaId implements Serializable {
 
     @Column(name = "Aluno_id")
     private int alunoId;
-    @Column(name = "Disciplina_id")
-    private int disciplinaId;
+    @Column(name = "Turma_id")
+    private int turmaId;
     @Column(name = "day")
     @Temporal(TemporalType.DATE)
     private Date day;
@@ -26,12 +26,12 @@ public class AulaId implements Serializable {
         this.alunoId = alunoId;
     }
 
-    public int getDisciplinaId() {
-        return disciplinaId;
+    public int getTurmaId() {
+        return turmaId;
     }
 
-    public void setDisciplinaId(int disciplinaId) {
-        this.disciplinaId = disciplinaId;
+    public void setTurmaId(int turmaId) {
+        this.turmaId = turmaId;
     }
 
     public Date getDay() {
