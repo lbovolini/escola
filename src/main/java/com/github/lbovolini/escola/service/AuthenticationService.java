@@ -56,10 +56,10 @@ public class AuthenticationService {
                 .compact();
     }
 
-    public static Object decode(String token, String role) {
+    public static Jws<Claims> decode(String token, String role) {
         String tokenString = extract(token);
         System.out.println(tokenString);
-        return Jwts.parserBuilder().setSigningKey(HASH_SHA512).require("role", role).build().parse(tokenString).getBody();
+        return Jwts.parserBuilder().setSigningKey(HASH_SHA512).require("role", role).build().parseClaimsJws(tokenString);
     }
 
     private static String extract(String token) {
