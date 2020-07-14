@@ -58,7 +58,6 @@ public class AuthenticationService {
 
     public static Jws<Claims> decode(String token, String role) {
         String tokenString = extract(token);
-        System.out.println(tokenString);
         return Jwts.parserBuilder().setSigningKey(HASH_SHA512).require("role", role).build().parseClaimsJws(tokenString);
     }
 
