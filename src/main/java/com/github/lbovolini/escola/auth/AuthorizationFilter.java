@@ -1,16 +1,16 @@
 package com.github.lbovolini.escola.auth;
 
-import com.github.lbovolini.escola.service.AuthenticationService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.HttpHeaders;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class JWTFilter implements Filter {
+public class AuthorizationFilter implements Filter {
+
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class.getName());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -21,20 +21,19 @@ public class JWTFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
 
-        String token = req.getHeader(HttpHeaders.AUTHORIZATION);
         String role = req.getHeader("Role");
 
-        if (token == null) {
-            res.setStatus(401);
-            return;
-        }
-
         try {
-            Jws<Claims> parser = AuthenticationService.decode(token, role);
+            boolean hasPermission = Permissions.isAuthorized(req.getRequestURI(), req.getMethod(), role);
+
+            if (!hasPermission) {
+                res.setStatus(403);
+                return;
+            }
             filterChain.doFilter(req, res);
         } catch (Exception e) {
-            e.printStackTrace();
-            res.setStatus(401);
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            res.setStatus(403);
         }
     }
 
