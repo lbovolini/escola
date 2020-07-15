@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.HttpHeaders;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JWTFilter implements Filter {
+
+    private static final Logger LOGGER = Logger.getLogger(JWTFilter.class.getName());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -33,7 +38,7 @@ public class JWTFilter implements Filter {
             Jws<Claims> parser = AuthenticationService.decode(token, role);
             filterChain.doFilter(req, res);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
             res.setStatus(401);
         }
     }
