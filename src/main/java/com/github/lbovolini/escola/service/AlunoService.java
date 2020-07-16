@@ -41,7 +41,7 @@ public class AlunoService {
     }
 
     public void update(AlunoDTO alunoDto) {
-        AlunoUtil.validateWithId(alunoDto);
+        AlunoUtil.validateAll(alunoDto);
         alunoRepository.update(alunoDto);
     }
 

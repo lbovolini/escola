@@ -69,7 +69,7 @@ public class AlunoUtil {
         }
     }
 
-    public static void validateWithId(AlunoDTO alunoDTO) {
+    public static void validateAll(AlunoDTO alunoDTO) {
 
         int id = alunoDTO.getId();
         if(id == 0) {
