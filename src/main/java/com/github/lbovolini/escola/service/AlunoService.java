@@ -5,6 +5,7 @@ import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
+import com.github.lbovolini.escola.util.AlunoUtil;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.List;
@@ -34,11 +35,13 @@ public class AlunoService {
     }
 
     public void save(AlunoDTO alunoDTO) {
+        AlunoUtil.validate(alunoDTO);
         alunoDTO.setPassword(BCrypt.hashpw(alunoDTO.getPassword(), BCrypt.gensalt(12)));
         alunoRepository.save(alunoDTO);
     }
 
     public void update(AlunoDTO alunoDto) {
+        AlunoUtil.validateWithId(alunoDto);
         alunoRepository.update(alunoDto);
     }
 

@@ -1,8 +1,11 @@
 package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.model.Aluno;
 import com.github.lbovolini.escola.model.Curso;
+
+import java.time.LocalDate;
 
 public class AlunoUtil {
 
@@ -28,5 +31,50 @@ public class AlunoUtil {
         aluno.setCurso(new Curso(alunoDTO.getCursoDTO().getId()));
 
         return aluno;
+    }
+
+    public static void validate(AlunoDTO alunoDTO) {
+
+        String name = alunoDTO.getName();
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name is required");
+        }
+
+        String email = alunoDTO.getEmail();
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email is required");
+        }
+
+        if (!email.matches("^\\S+@\\S+$")) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+
+        String password = alunoDTO.getPassword();
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Password is required");
+        }
+
+        if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+            throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+        }
+
+        LocalDate birthday = alunoDTO.getBirthday();
+        if (birthday == null) {
+            throw new IllegalArgumentException("Birthday is required");
+        }
+
+        CursoDTO cursoDTO = alunoDTO.getCursoDTO();
+        if (cursoDTO == null || cursoDTO.getId() == 0) {
+            throw new IllegalArgumentException("Course is required");
+        }
+    }
+
+    public static void validateWithId(AlunoDTO alunoDTO) {
+
+        int id = alunoDTO.getId();
+        if(id == 0) {
+            throw new IllegalArgumentException("Id is required");
+        }
+        validate(alunoDTO);
     }
 }
