@@ -27,6 +27,9 @@ public class AuthenticationService {
         this.alunoRepository = new AlunoRepositoryImpl();
     }
 
+    public void validateAdministrator(Credentials credentials) {
+    }
+
     public void validateStudent(Credentials credentials) throws Exception {
 
         String hash_password = alunoRepository.findPassword(credentials.email);
@@ -36,6 +39,9 @@ public class AuthenticationService {
         if (!valid) {
             throw new Exception("Invalid Credencials");
         }
+    }
+
+    public void validateTeacher(Credentials credentials) {
     }
 
     public static String generateToken(String subject, String role) {

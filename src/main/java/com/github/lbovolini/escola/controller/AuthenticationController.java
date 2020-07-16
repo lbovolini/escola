@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
-import com.github.lbovolini.escola.auth.Role;
 import com.github.lbovolini.escola.service.AuthenticationService;
 
 import javax.ws.rs.*;
@@ -23,13 +22,43 @@ public class AuthenticationController {
     }
 
     @POST
+    @Path("administrator/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response administratorLogin(Credentials credentials) {
+        try {
+            authenticationService.validateAdministrator(credentials);
+            String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
+            return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
+    @POST
     @Path("student/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response studentLogin(Credentials credentials) {
         try {
             authenticationService.validateStudent(credentials);
-            String token = authenticationService.generateToken(credentials.getEmail(), Role.student());
+            String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
+            return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
+    @POST
+    @Path("teacher/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response teacherLogin(Credentials credentials) {
+        try {
+            authenticationService.validateTeacher(credentials);
+            String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
