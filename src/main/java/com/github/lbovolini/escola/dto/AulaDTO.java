@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class AulaDTO {
 
-    private int alunoId;
+    private int disciplinaId;
     private int turmaId;
     private Date day;
 
-    public int getAlunoId() {
-        return alunoId;
+    public int getDisciplinaId() {
+        return disciplinaId;
     }
 
-    public void setAlunoId(int alunoId) {
-        this.alunoId = alunoId;
+    public void setDisciplinaId(int disciplinaId) {
+        this.disciplinaId = disciplinaId;
     }
 
     public int getTurmaId() {
