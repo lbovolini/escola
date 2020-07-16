@@ -32,9 +32,9 @@ public class AuthenticationService {
 
     public void validateStudent(Credentials credentials) throws Exception {
 
-        String hash_password = alunoRepository.findPassword(credentials.email);
+        String hash_password = alunoRepository.findPassword(credentials.getEmail());
 
-        boolean valid = BCrypt.checkpw(credentials.password, hash_password);
+        boolean valid = BCrypt.checkpw(credentials.getEmail(), hash_password);
 
         if (!valid) {
             throw new Exception("Invalid Credencials");

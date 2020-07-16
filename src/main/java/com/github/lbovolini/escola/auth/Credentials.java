@@ -2,8 +2,8 @@ package com.github.lbovolini.escola.auth;
 
 public class Credentials {
 
-    public String email;
-    public String password;
+    private String email;
+    private String password;
     private String role;
 
     public String getEmail() {
