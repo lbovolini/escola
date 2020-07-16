@@ -9,6 +9,8 @@ public class ProfessorUtil {
         ProfessorDTO professorDTO = new ProfessorDTO();
         professorDTO.setId(professor.getId());
         professorDTO.setName(professor.getName());
+        professorDTO.setEmail(professor.getEmail());
+        professorDTO.setPassword(professor.getPassword());
 
         return professorDTO;
     }
@@ -17,6 +19,8 @@ public class ProfessorUtil {
         Professor professor = new Professor();
         professor.setId(professorDTO.getId());
         professor.setName(professorDTO.getName());
+        professor.setEmail(professorDTO.getEmail());
+        professor.setPassword(professorDTO.getPassword());
 
         return professor;
     }

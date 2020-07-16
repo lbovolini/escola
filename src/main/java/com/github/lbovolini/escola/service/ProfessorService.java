@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.service;
 import com.github.lbovolini.escola.dto.ProfessorDTO;
 import com.github.lbovolini.escola.repository.ProfessorRepository;
 import com.github.lbovolini.escola.repository.ProfessorRepositoryImpl;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class ProfessorService {
 
@@ -21,6 +22,7 @@ public class ProfessorService {
     }
 
     public void save(ProfessorDTO professorDTO) {
+        professorDTO.setPassword(BCrypt.hashpw(professorDTO.getPassword(), BCrypt.gensalt(12)));
         professorRepository.save(professorDTO);
     }
 

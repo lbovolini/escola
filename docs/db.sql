@@ -122,4 +122,9 @@ ALTER TABLE Aula DROP PRIMARY KEY, ADD PRIMARY KEY (`Disciplina_id`, `Turma_id`,
 ALTER TABLE Aula DROP COLUMN Aluno_id;
 
 
+ALTER TABLE Professor ADD COLUMN `email` VARCHAR(255) NOT NULL;
+ALTER TABLE Professor ADD UNIQUE (email);
+ALTER TABLE Professor ADD COLUMN `password` VARCHAR(255) NULL;
+
+
 
