@@ -1,7 +1,6 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
-import com.github.lbovolini.escola.auth.Role;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import io.jsonwebtoken.Claims;
