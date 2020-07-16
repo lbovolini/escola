@@ -44,7 +44,7 @@ public class AuthenticationService {
     public void validateTeacher(Credentials credentials) {
     }
 
-    public static String generateToken(String subject, String role) {
+    public String generateToken(String subject, String role) {
 
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(HASH_SHA512);
 
