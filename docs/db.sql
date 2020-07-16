@@ -132,3 +132,15 @@ ALTER TABLE Aluno ADD UNIQUE (email);
 ALTER TABLE Aluno MODIFY `password` VARCHAR(255) NOT NULL;
 ALTER TABLE Professor MODIFY `password` VARCHAR(255) NOT NULL;
 
+
+CREATE TABLE IF NOT EXISTS `escola`.`Administrador` (
+  `id` INT NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  UNIQUE (email),
+  PRIMARY KEY (`id`)
+);
+
+ALTER TABLE Administrador MODIFY `id` INT NOT NULL AUTO_INCREMENT;
+
+
