@@ -33,7 +33,7 @@ public class AuthenticationService {
 
         String hash_password = alunoRepository.findPassword(credentials.getEmail());
 
-        boolean valid = BCrypt.checkpw(credentials.getEmail(), hash_password);
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), hash_password);
 
         if (!valid) {
             throw new Exception("Invalid Credencials");
