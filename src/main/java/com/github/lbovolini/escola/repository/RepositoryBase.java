@@ -1,9 +1,12 @@
 package com.github.lbovolini.escola.repository;
 
+import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 public class RepositoryBase<T> {
@@ -57,13 +60,30 @@ public class RepositoryBase<T> {
 
     public T save(T table) {
 
-        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            entityManager.getTransaction().begin();
 
-        entityManager.persist(table);
+            entityManager.persist(table);
 
-        entityManager.getTransaction().commit();
-        entityManager.close();
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            Throwable t = ex.getCause();
+            while ((t != null) && !(t instanceof SQLIntegrityConstraintViolationException)) {
+                t = t.getCause();
+            }
+            if (t instanceof SQLIntegrityConstraintViolationException) {
+                if (t.getMessage().endsWith("'email'")) {
+                    throw new EmailAlreadyRegisteredException();
+                }
+            }
+            throw new RuntimeException(ex.getCause());
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
 
         return table;
     }

@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.controller;
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
+import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
 import com.github.lbovolini.escola.service.AlunoService;
 
 import javax.ws.rs.*;
@@ -80,6 +81,9 @@ public class AlunoController {
         try {
             alunoService.save(alunoDto);
             return Response.ok().build();
+        } catch (EmailAlreadyRegisteredException eare) {
+            LOGGER.log(Level.WARNING, eare.getMessage(), eare);
+            return Response.serverError().entity(eare.getMessage()).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
