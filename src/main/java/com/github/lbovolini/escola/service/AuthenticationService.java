@@ -36,7 +36,7 @@ public class AuthenticationService {
         boolean valid = BCrypt.checkpw(credentials.getPassword(), hash_password);
 
         if (!valid) {
-            throw new Exception("Invalid Credencials");
+            throw new Exception("Invalid Credentials");
         }
     }
 
