@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
+import com.github.lbovolini.escola.auth.Role;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import io.jsonwebtoken.Claims;
@@ -30,6 +31,10 @@ public class AuthenticationService {
     }
 
     public void validateStudent(Credentials credentials) throws Exception {
+
+        if (!credentials.getRole().equals(Role.student())) {
+            throw new RuntimeException("Invalid Credentials");
+        }
 
         String hash_password = alunoRepository.findPassword(credentials.getEmail());
 
