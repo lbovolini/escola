@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.controller;
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
+import com.github.lbovolini.escola.exception.ErrorMessage;
 import com.github.lbovolini.escola.service.AlunoService;
 import com.github.lbovolini.escola.service.CursoService;
 
@@ -43,13 +44,15 @@ public class SignupController {
     @POST
     @Path("/students")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response saveStudent(final AlunoDTO alunoDto) {
         try {
             alunoService.save(alunoDto);
             return Response.ok().build();
         } catch (EmailAlreadyRegisteredException eare) {
             LOGGER.log(Level.WARNING, eare.getMessage(), eare);
-            return Response.serverError().entity(eare.getMessage()).build();
+            ErrorMessage errorMessage = new ErrorMessage(eare.getMessage());
+            return Response.serverError().entity(errorMessage).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();
