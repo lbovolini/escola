@@ -54,8 +54,10 @@ public class AlunoUtil {
             throw new IllegalArgumentException("Password is required");
         }
 
-        if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
-            throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60,60}")) {
+            if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+                throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+            }
         }
 
         LocalDate birthday = alunoDTO.getBirthday();

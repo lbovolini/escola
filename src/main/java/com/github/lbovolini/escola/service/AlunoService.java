@@ -40,9 +40,16 @@ public class AlunoService {
         alunoRepository.save(alunoDTO);
     }
 
-    public void update(AlunoDTO alunoDto) {
-        AlunoUtil.validateAll(alunoDto);
-        alunoRepository.update(alunoDto);
+    public void update(AlunoDTO alunoDTO) {
+
+        String password = alunoDTO.getPassword();
+
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60,60}")) {
+            alunoDTO.setPassword(BCrypt.hashpw(alunoDTO.getPassword(), BCrypt.gensalt(12)));
+        }
+
+        AlunoUtil.validateAll(alunoDTO);
+        alunoRepository.update(alunoDTO);
     }
 
 }
