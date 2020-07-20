@@ -23,6 +23,7 @@ public class CursoController {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
             cursoService.delete(id);
@@ -61,6 +62,7 @@ public class CursoController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response save(final CursoDTO cursoDto) {
         try {
             cursoService.save(cursoDto);
@@ -73,6 +75,7 @@ public class CursoController {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response update(final CursoDTO cursoDto) {
         try {
             cursoService.update(cursoDto);

@@ -24,6 +24,7 @@ public class GradeCurricularController {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
             gradeCurricularService.delete(id);
@@ -62,6 +63,7 @@ public class GradeCurricularController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response save(GradeCurricularDTO gradeCurricularDTO) {
         try {
             gradeCurricularService.save(gradeCurricularDTO);
@@ -74,6 +76,7 @@ public class GradeCurricularController {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response update(GradeCurricularDTO gradeCurricularDTO) {
         try {
             gradeCurricularService.update(gradeCurricularDTO);

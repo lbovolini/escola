@@ -24,6 +24,7 @@ public class DisciplinaController {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
             disciplinaService.delete(id);
@@ -62,6 +63,7 @@ public class DisciplinaController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response save(DisciplinaDTO disciplinaDTO) {
         try {
             disciplinaService.save(disciplinaDTO);
@@ -74,6 +76,7 @@ public class DisciplinaController {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response update(DisciplinaDTO disciplinaDTO) {
         try {
             disciplinaService.update(disciplinaDTO);

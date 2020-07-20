@@ -22,6 +22,7 @@ public class TurmaController {
 
     @DELETE
     @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
             turmaService.delete(id);
@@ -47,6 +48,7 @@ public class TurmaController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response save(TurmaDTO turmaDTO) {
         try {
             turmaService.save(turmaDTO);
@@ -59,6 +61,7 @@ public class TurmaController {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response update(TurmaDTO turmaDTO) {
         try {
             turmaService.update(turmaDTO);
