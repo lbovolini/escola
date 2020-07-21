@@ -48,14 +48,20 @@ public class RepositoryBase<T> {
 
 
     public void executeDelete(String query) {
-        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            entityManager.getTransaction().begin();
 
-        Query query1 = entityManager.createQuery(query);
-        query1.executeUpdate();
+            Query query1 = entityManager.createQuery(query);
+            query1.executeUpdate();
 
-        entityManager.getTransaction().commit();
-        entityManager.close();
+            entityManager.getTransaction().commit();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
 
     public T save(T table) {
@@ -90,13 +96,17 @@ public class RepositoryBase<T> {
 
     public void update(T table) {
 
-        EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
-
-        entityManager.merge(table);
-
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            entityManager.getTransaction().begin();
+            entityManager.merge(table);
+            entityManager.getTransaction().commit();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
 
     /*public void delete(T table) {
