@@ -8,6 +8,8 @@ public interface ProfessorRepository {
 
     ProfessorDTO find(int id);
 
+    String findPassword(String email);
+
     void save(ProfessorDTO professorDTO);
 
     void update(ProfessorDTO professorDTO);

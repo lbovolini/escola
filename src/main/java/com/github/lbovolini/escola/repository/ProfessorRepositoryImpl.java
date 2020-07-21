@@ -20,6 +20,12 @@ public class ProfessorRepositoryImpl extends RepositoryBase<Professor> implement
     }
 
     @Override
+    public String findPassword(String email) {
+        String query = "SELECT password FROM Professor WHERE email = " + email;
+        return (String)executeSingle(query);
+    }
+
+    @Override
     public void save(ProfessorDTO professorDTO) {
         Professor professor = ProfessorUtil.toModel(professorDTO);
         super.save(professor);

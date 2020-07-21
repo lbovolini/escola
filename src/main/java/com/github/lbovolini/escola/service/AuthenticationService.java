@@ -2,8 +2,7 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
 import com.github.lbovolini.escola.auth.Role;
-import com.github.lbovolini.escola.repository.AlunoRepository;
-import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
+import com.github.lbovolini.escola.repository.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -22,12 +21,28 @@ public class AuthenticationService {
     public static String HASH_SHA512 = "D31F9BB81B68134704060B4EE6FC772CF98F69D699A8456B296BD2D69AAF276E4AF927D0E5C62A8A4C85EC463B30ECB18D96D994A1B72D07A5D8503A9206080B";
 
     private AlunoRepository alunoRepository;
+    private ProfessorRepository professorRepository;
+    private AdministradorRepository administradorRepository;
 
     public AuthenticationService() {
         this.alunoRepository = new AlunoRepositoryImpl();
+        this.professorRepository = new ProfessorRepositoryImpl();
+        this.administradorRepository = new AdministradorRepositoryImpl();
     }
 
-    public void validateAdministrator(Credentials credentials) {
+    public void validateAdministrator(Credentials credentials) throws Exception {
+
+        if (!credentials.getRole().equals(Role.administrator())) {
+            throw new RuntimeException("Invalid Credentials");
+        }
+
+        String hashPassword = administradorRepository.findPassword(credentials.getEmail());
+
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
+
+        if (!valid) {
+            throw new Exception("Invalid Credentials");
+        }
     }
 
     public void validateStudent(Credentials credentials) throws Exception {
@@ -36,16 +51,28 @@ public class AuthenticationService {
             throw new RuntimeException("Invalid Credentials");
         }
 
-        String hash_password = alunoRepository.findPassword(credentials.getEmail());
+        String hashPassword = alunoRepository.findPassword(credentials.getEmail());
 
-        boolean valid = BCrypt.checkpw(credentials.getPassword(), hash_password);
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
 
         if (!valid) {
             throw new Exception("Invalid Credentials");
         }
     }
 
-    public void validateTeacher(Credentials credentials) {
+    public void validateTeacher(Credentials credentials) throws Exception {
+
+        if (!credentials.getRole().equals(Role.teacher())) {
+            throw new RuntimeException("Invalid Credentials");
+        }
+
+        String hashPassword = professorRepository.findPassword(credentials.getEmail());
+
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
+
+        if (!valid) {
+            throw new Exception("Invalid Credentials");
+        }
     }
 
     public String generateToken(String subject, String role) {
