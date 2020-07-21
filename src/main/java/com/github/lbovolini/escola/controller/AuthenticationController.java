@@ -1,6 +1,8 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
+import com.github.lbovolini.escola.exception.ErrorMessage;
+import com.github.lbovolini.escola.exception.InvalidCredentialsException;
 import com.github.lbovolini.escola.service.AuthenticationService;
 
 import javax.ws.rs.*;
@@ -30,6 +32,9 @@ public class AuthenticationController {
             authenticationService.validateAdministrator(credentials);
             String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        } catch (InvalidCredentialsException ice) {
+            ErrorMessage errorMessage = new ErrorMessage(ice.getMessage());
+            return Response.serverError().entity(errorMessage).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.status(Response.Status.UNAUTHORIZED).build();
@@ -45,6 +50,9 @@ public class AuthenticationController {
             authenticationService.validateStudent(credentials);
             String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        } catch (InvalidCredentialsException ice) {
+            ErrorMessage errorMessage = new ErrorMessage(ice.getMessage());
+            return Response.serverError().entity(errorMessage).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.status(Response.Status.UNAUTHORIZED).build();
@@ -60,6 +68,9 @@ public class AuthenticationController {
             authenticationService.validateTeacher(credentials);
             String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
             return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        } catch (InvalidCredentialsException ice) {
+            ErrorMessage errorMessage = new ErrorMessage(ice.getMessage());
+            return Response.serverError().entity(errorMessage).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.status(Response.Status.UNAUTHORIZED).build();
