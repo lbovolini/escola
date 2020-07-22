@@ -1,9 +1,12 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
+import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.message.ErrorMessage;
 import com.github.lbovolini.escola.exception.InvalidCredentialsException;
 import com.github.lbovolini.escola.service.AuthenticationService;
+import com.github.lbovolini.escola.util.AlunoUtil;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
@@ -47,9 +50,10 @@ public class AuthenticationController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response studentLogin(Credentials credentials) {
         try {
-            authenticationService.validateStudent(credentials);
+            AlunoDTO alunoDTO = authenticationService.validateStudent(credentials);
             String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
-            return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+            UsuarioDTO usuarioDTO = AlunoUtil.toUsuarioDTO(alunoDTO, credentials.getRole(), token);
+            return Response.ok().entity(usuarioDTO).build();
         } catch (InvalidCredentialsException ice) {
             ErrorMessage errorMessage = new ErrorMessage(ice.getMessage());
             return Response.serverError().entity(errorMessage).build();

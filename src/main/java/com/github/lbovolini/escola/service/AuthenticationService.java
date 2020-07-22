@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
 import com.github.lbovolini.escola.auth.Role;
+import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.exception.InvalidCredentialsException;
 import com.github.lbovolini.escola.repository.*;
 import io.jsonwebtoken.Claims;
@@ -46,19 +47,21 @@ public class AuthenticationService {
         }
     }
 
-    public void validateStudent(Credentials credentials) throws InvalidCredentialsException {
+    public AlunoDTO validateStudent(Credentials credentials) throws InvalidCredentialsException {
 
         if (!credentials.getRole().equals(Role.student())) {
             throw new InvalidCredentialsException();
         }
 
-        String hashPassword = alunoRepository.findPassword(credentials.getEmail());
+        AlunoDTO alunoDTO = alunoRepository.findByEmail(credentials.getEmail());
 
-        boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), alunoDTO.getPassword());
 
         if (!valid) {
             throw new InvalidCredentialsException();
         }
+
+        return alunoDTO;
     }
 
     public void validateTeacher(Credentials credentials) throws InvalidCredentialsException {

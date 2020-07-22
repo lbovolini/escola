@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.CursoDTO;
+import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.model.Aluno;
 import com.github.lbovolini.escola.model.Curso;
 
@@ -31,6 +32,17 @@ public class AlunoUtil {
         aluno.setCurso(new Curso(alunoDTO.getCursoDTO().getId()));
 
         return aluno;
+    }
+
+    public static UsuarioDTO toUsuarioDTO(AlunoDTO alunoDTO, String role, String token) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setId(alunoDTO.getId());
+        usuarioDTO.setName(alunoDTO.getName());
+        usuarioDTO.setEmail(alunoDTO.getEmail());
+        usuarioDTO.setRole(role);
+        usuarioDTO.setToken(token);
+
+        return usuarioDTO;
     }
 
     public static void validate(AlunoDTO alunoDTO) {

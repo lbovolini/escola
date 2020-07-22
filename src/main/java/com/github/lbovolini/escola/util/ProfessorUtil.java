@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.ProfessorDTO;
+import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.model.Professor;
 
 public class ProfessorUtil {
@@ -23,5 +24,16 @@ public class ProfessorUtil {
         professor.setPassword(professorDTO.getPassword());
 
         return professor;
+    }
+
+    public static UsuarioDTO toUsuarioDTO(ProfessorDTO professorDTO, String role, String token) {
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setId(professorDTO.getId());
+        usuarioDTO.setName(professorDTO.getName());
+        usuarioDTO.setEmail(professorDTO.getEmail());
+        usuarioDTO.setRole(role);
+        usuarioDTO.setToken(token);
+
+        return usuarioDTO;
     }
 }

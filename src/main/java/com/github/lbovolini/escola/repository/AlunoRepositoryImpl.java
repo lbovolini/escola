@@ -31,6 +31,17 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
     }
 
     @Override
+    public AlunoDTO findByEmail(String email) {
+        String query = "SELECT a FROM Aluno a WHERE a.email = ?1";
+        List parameters = new ArrayList();
+        parameters.add(email);
+
+        Aluno aluno = (Aluno)executeSingle(query, parameters);
+
+        return AlunoUtil.toDTO(aluno);
+    }
+
+    @Override
     public List<DisciplinaDTO> findDisciplinas(int alunoId) {
         String query = "SELECT d FROM Matricula m JOIN Disciplina d ON m.disciplina = d.id JOIN Aluno a ON m.aluno = a.id WHERE a.id = " + alunoId;
         List<Disciplina> disciplinaList = execute(query);

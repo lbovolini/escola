@@ -12,6 +12,8 @@ public interface AlunoRepository {
 
     AlunoDTO find(int id);
 
+    AlunoDTO findByEmail(String email);
+
     String findPassword(String email);
 
     List<TurmaDTO> findTurmas(int id);
