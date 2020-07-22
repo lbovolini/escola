@@ -1,7 +1,7 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
-import com.github.lbovolini.escola.exception.ErrorMessage;
+import com.github.lbovolini.escola.message.ErrorMessage;
 import com.github.lbovolini.escola.exception.InvalidCredentialsException;
 import com.github.lbovolini.escola.service.AuthenticationService;
 

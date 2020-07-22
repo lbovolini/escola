@@ -4,7 +4,7 @@ import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
-import com.github.lbovolini.escola.exception.ErrorMessage;
+import com.github.lbovolini.escola.message.ErrorMessage;
 import com.github.lbovolini.escola.service.AlunoService;
 
 import javax.ws.rs.*;

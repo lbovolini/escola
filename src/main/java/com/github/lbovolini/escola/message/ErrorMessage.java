@@ -1,4 +1,4 @@
-package com.github.lbovolini.escola.exception;
+package com.github.lbovolini.escola.message;
 
 public class ErrorMessage {
 

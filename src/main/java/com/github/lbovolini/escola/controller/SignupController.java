@@ -3,7 +3,7 @@ package com.github.lbovolini.escola.controller;
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
-import com.github.lbovolini.escola.exception.ErrorMessage;
+import com.github.lbovolini.escola.message.ErrorMessage;
 import com.github.lbovolini.escola.service.AlunoService;
 import com.github.lbovolini.escola.service.CursoService;
 
