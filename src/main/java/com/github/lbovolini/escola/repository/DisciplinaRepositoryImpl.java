@@ -26,8 +26,8 @@ public class DisciplinaRepositoryImpl extends RepositoryBase<Disciplina> impleme
     }
 
     @Override
-    public List<AulaDTO> findAulas(int disciplinaId, int turmaId) {
-        String query = "SELECT au FROM Aula au JOIN Turma t ON au.turma = t.id JOIN Disciplina d ON au.disciplina = d.id WHERE d.id = " + disciplinaId + " AND t.id = " + turmaId;
+    public List<AulaDTO> findAulas(int disciplinaId, int alunoId) {
+        String query = "SELECT a FROM Aula a JOIN Turma t ON a.Turma_id = t.id JOIN AlunoTurma at ON at.Turma_id = t.id WHERE at.Aluno_id = " + alunoId +" AND a.Disciplina_id = " + disciplinaId;
         List<Aula> aulaList = execute(query);
         List<AulaDTO> aulaDTOList = aulaList.stream().map(AulaUtil::toDTO).collect(Collectors.toList());
 

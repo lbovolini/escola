@@ -11,7 +11,7 @@ public interface DisciplinaRepository {
 
     DisciplinaDTO find(int id);
 
-    List<AulaDTO> findAulas(int disciplinaId, int turmaId);
+    List<AulaDTO> findAulas(int disciplinaId, int alunoId);
 
     void save(DisciplinaDTO disciplinaDTO);
 

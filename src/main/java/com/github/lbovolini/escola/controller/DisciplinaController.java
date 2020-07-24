@@ -49,11 +49,11 @@ public class DisciplinaController {
     }
 
     @GET
-    @Path("/{id}/aulas/{turmaId}")
+    @Path("/{id}/aulas/{alunoId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("turmaId") int turmaId) {
+    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("alunoId") int alunoId) {
         try {
-            List<AulaDTO> aulaDTOList = disciplinaService.findAulas(disciplinaId, turmaId);
+            List<AulaDTO> aulaDTOList = disciplinaService.findAulas(disciplinaId, alunoId);
             return Response.ok().entity(aulaDTOList).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
