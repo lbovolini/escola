@@ -4,6 +4,9 @@ import com.github.lbovolini.escola.dto.ProfessorDTO;
 import com.github.lbovolini.escola.model.Professor;
 import com.github.lbovolini.escola.util.ProfessorUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProfessorRepositoryImpl extends RepositoryBase<Professor> implements ProfessorRepository {
     @Override
     public void delete(int id) {
@@ -21,8 +24,11 @@ public class ProfessorRepositoryImpl extends RepositoryBase<Professor> implement
 
     @Override
     public String findPassword(String email) {
-        String query = "SELECT password FROM Professor WHERE email = " + email;
-        return (String)executeSingle(query);
+        String query = "SELECT password FROM Professor WHERE email = ?1";
+        List parameters = new ArrayList<>();
+        parameters.add(email);
+
+        return (String)executeSingle(query, parameters);
     }
 
     @Override
