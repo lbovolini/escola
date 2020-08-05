@@ -21,6 +21,7 @@ public class RepositoryBase<T> {
     public List execute(String query) {
         EntityManager entityManager = null;
         try {
+            entityManager = getEntityManager();
             Query query1 = entityManager.createQuery(query);
 
             return query1.getResultList();
