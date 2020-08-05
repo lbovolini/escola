@@ -95,7 +95,6 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
     public void updateProfile(AlunoProfileDTO alunoProfileDTO) {
         String query = "UPDATE Aluno SET name = ?1, email = ?2, birthday = ?3 WHERE id = ?4";
 
-        System.out.println("ASDLSAKDJASLDKASJD" + alunoProfileDTO.getId());
         List parameters = new ArrayList();
         parameters.add(alunoProfileDTO.getName());
         parameters.add(alunoProfileDTO.getEmail());

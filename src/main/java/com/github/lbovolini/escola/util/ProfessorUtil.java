@@ -36,4 +36,41 @@ public class ProfessorUtil {
 
         return usuarioDTO;
     }
+
+    public static void validate(ProfessorDTO professorDTO) {
+
+        String name = professorDTO.getName();
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name is required");
+        }
+
+        String email = professorDTO.getEmail();
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email is required");
+        }
+
+        if (!email.matches("^\\S+@\\S+$")) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+
+        String password = professorDTO.getPassword();
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Password is required");
+        }
+
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
+            if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+                throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+            }
+        }
+    }
+
+    public static void validateAll(ProfessorDTO professorDTO) {
+        int id = professorDTO.getId();
+        if(id == 0) {
+            throw new IllegalArgumentException("Id is required");
+        }
+
+        validate(professorDTO);
+    }
 }
