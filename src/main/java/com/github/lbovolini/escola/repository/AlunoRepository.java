@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.AlunoProfileDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 
@@ -14,6 +15,8 @@ public interface AlunoRepository {
 
     AlunoDTO findByEmail(String email);
 
+    List<DisciplinaDTO> findDisciplinas(int id);
+
     String findPassword(String email);
 
     List<TurmaDTO> findTurmas(int id);
@@ -22,5 +25,7 @@ public interface AlunoRepository {
 
     void update(AlunoDTO alunoDTO);
 
-    List<DisciplinaDTO> findDisciplinas(int id);
+    void updateProfile(AlunoProfileDTO alunoProfileDTO);
+
+    void updateProfileAndPassword(AlunoProfileDTO alunoProfileDTO);
 }

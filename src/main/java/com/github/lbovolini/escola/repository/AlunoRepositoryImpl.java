@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.AlunoProfileDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.model.Aluno;
@@ -88,6 +89,34 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
 
         Aluno aluno = AlunoUtil.toModel(alunoDTO);
         super.update(aluno);
+    }
+
+    @Override
+    public void updateProfile(AlunoProfileDTO alunoProfileDTO) {
+        String query = "UPDATE Aluno SET name = ?1, email = ?2, birthday = ?3 WHERE id = ?4";
+
+        System.out.println("ASDLSAKDJASLDKASJD" + alunoProfileDTO.getId());
+        List parameters = new ArrayList();
+        parameters.add(alunoProfileDTO.getName());
+        parameters.add(alunoProfileDTO.getEmail());
+        parameters.add(alunoProfileDTO.getBirthday());
+        parameters.add(alunoProfileDTO.getId());
+
+        executeUpdate(query, parameters);
+    }
+
+    @Override
+    public void updateProfileAndPassword(AlunoProfileDTO alunoProfileDTO) {
+        String query = "UPDATE Aluno SET name = ?1, email = ?2, birthday = ?3, password = ?4 WHERE id = ?5";
+
+        List parameters = new ArrayList();
+        parameters.add(alunoProfileDTO.getName());
+        parameters.add(alunoProfileDTO.getEmail());
+        parameters.add(alunoProfileDTO.getBirthday());
+        parameters.add(alunoProfileDTO.getNewPassword());
+        parameters.add(alunoProfileDTO.getId());
+
+        executeUpdate(query, parameters);
     }
 
 }

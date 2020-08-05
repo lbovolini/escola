@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.AlunoProfileDTO;
 import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.model.Aluno;
@@ -66,7 +67,7 @@ public class AlunoUtil {
             throw new IllegalArgumentException("Password is required");
         }
 
-        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60,60}")) {
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
             if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
                 throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
             }
@@ -91,4 +92,45 @@ public class AlunoUtil {
         }
         validate(alunoDTO);
     }
+
+    public static void validateProfile(AlunoProfileDTO alunoProfileDTO) {
+
+        String name = alunoProfileDTO.getName();
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name is required");
+        }
+
+        String email = alunoProfileDTO.getEmail();
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("Email is required");
+        }
+
+        if (!email.matches("^\\S+@\\S+$")) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+
+        String password = alunoProfileDTO.getPassword();
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Password is required");
+        }
+
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
+            if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+                throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+            }
+        }
+
+        String newPassword = alunoProfileDTO.getNewPassword();
+        if (newPassword != null && !newPassword.isEmpty()) {
+            if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+                throw new IllegalArgumentException("Password require minimum eight characters, at least one letter and one number");
+            }
+        }
+
+        LocalDate birthday = alunoProfileDTO.getBirthday();
+        if (birthday == null) {
+            throw new IllegalArgumentException("Birthday is required");
+        }
+    }
+
 }

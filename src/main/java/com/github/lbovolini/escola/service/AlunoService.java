@@ -1,8 +1,10 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.AlunoProfileDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
+import com.github.lbovolini.escola.exception.InvalidPasswordException;
 import com.github.lbovolini.escola.repository.AlunoRepository;
 import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import com.github.lbovolini.escola.util.AlunoUtil;
@@ -44,7 +46,7 @@ public class AlunoService {
 
         String password = alunoDTO.getPassword();
 
-        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60,60}")) {
+        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
             alunoDTO.setPassword(BCrypt.hashpw(alunoDTO.getPassword(), BCrypt.gensalt(12)));
         }
 
@@ -52,4 +54,26 @@ public class AlunoService {
         alunoRepository.update(alunoDTO);
     }
 
+    public void updateProfile(AlunoProfileDTO alunoProfileDTO) {
+
+        AlunoUtil.validateProfile(alunoProfileDTO);
+        validatePassword(alunoProfileDTO.getId(), alunoProfileDTO.getPassword());
+
+        String newPassword = alunoProfileDTO.getNewPassword();
+        if (newPassword != null && !newPassword.isEmpty()) {
+            alunoProfileDTO.setNewPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
+            alunoRepository.updateProfileAndPassword(alunoProfileDTO);
+        }
+        else {
+            alunoRepository.updateProfile(alunoProfileDTO);
+        }
+    }
+
+    private final void validatePassword(int id, String password) {
+        AlunoDTO alunoDTO = alunoRepository.find(id);
+
+        if(!BCrypt.checkpw(password, alunoDTO.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+    }
 }

@@ -47,10 +47,11 @@ public class Permissions {
 
     static {
         // AlunoController
-        permissions.put("/alunos", new Permission("POST PUT", "", "*"));
+        permissions.put("/alunos", new Permission("POST", "", "*"));
         permissions.put("/alunos/id", new Permission("GET", "GET", "*"));
         permissions.put("/alunos/id/disciplinas", new Permission("GET", "GET", "*"));
         permissions.put("/alunos/id/turmas", new Permission("GET", "GET", "*"));
+        permissions.put("/alunos/profile", new Permission("PUT", "", "*"));
         // CursoController
         permissions.put("/cursos", new Permission("GET", "GET PUT", "*"));
         permissions.put("/cursos/id", new Permission("GET", "GET", "*"));
