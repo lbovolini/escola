@@ -19,30 +19,49 @@ public class RepositoryBase<T> {
 
 
     public List execute(String query) {
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = null;
+        try {
+            Query query1 = entityManager.createQuery(query);
 
-        Query query1 = entityManager.createQuery(query);
-
-        return query1.getResultList();
+            return query1.getResultList();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
 
     public Object executeSingle(String query) {
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
 
-        Query query1 = entityManager.createQuery(query);
+            Query query1 = entityManager.createQuery(query);
 
-        return query1.getSingleResult();
+            return query1.getSingleResult();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
     }
 
     public Object executeSingle(String query, List<String> parameters) {
-        EntityManager entityManager = getEntityManager();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
 
-        Query query1 = entityManager.createQuery(query);
-        for (int i = 0; i < parameters.size(); i++) {
-            query1.setParameter(i + 1, parameters.get(i));
+            Query query1 = entityManager.createQuery(query);
+            for (int i = 0; i < parameters.size(); i++) {
+                query1.setParameter(i + 1, parameters.get(i));
+            }
+
+            return query1.getSingleResult();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
         }
-
-        return query1.getSingleResult();
     }
 
     public void executeUpdate(String query, List<String> parameters) {
