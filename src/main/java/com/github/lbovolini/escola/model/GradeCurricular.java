@@ -1,9 +1,6 @@
 package com.github.lbovolini.escola.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class GradeCurricular {
@@ -12,6 +9,10 @@ public class GradeCurricular {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int year;
+
+    @ManyToOne
+    @JoinColumn(name = "Curso_id", referencedColumnName = "id")
+    private Curso curso;
 
     public GradeCurricular() {
     }
@@ -34,5 +35,13 @@ public class GradeCurricular {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 }

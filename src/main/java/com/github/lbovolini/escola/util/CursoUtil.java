@@ -10,7 +10,6 @@ public class CursoUtil {
         CursoDTO cursoDTO = new CursoDTO();
         cursoDTO.setId(curso.getId());
         cursoDTO.setName(curso.getName());
-        cursoDTO.setGradeCurricularDTO(GradeCurricularUtil.toDTO(curso.getGradeCurricular()));
 
         return cursoDTO;
     }
@@ -19,7 +18,6 @@ public class CursoUtil {
         Curso curso = new Curso();
         curso.setId(cursoDTO.getId());
         curso.setName(cursoDTO.getName());
-        curso.setGradeCurricular(new GradeCurricular(cursoDTO.getGradeCurricularDTO().getId()));
 
         return curso;
     }

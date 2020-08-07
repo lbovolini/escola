@@ -4,6 +4,7 @@ public class GradeCurricularDTO {
 
     private int id;
     private int year;
+    private CursoDTO cursoDTO;
 
     public GradeCurricularDTO() {
     }
@@ -26,5 +27,13 @@ public class GradeCurricularDTO {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public CursoDTO getCursoDTO() {
+        return cursoDTO;
+    }
+
+    public void setCursoDTO(CursoDTO cursoDTO) {
+        this.cursoDTO = cursoDTO;
     }
 }

@@ -143,4 +143,10 @@ CREATE TABLE IF NOT EXISTS `escola`.`Administrador` (
 
 ALTER TABLE Administrador MODIFY `id` INT NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE Curso DROP FOREIGN KEY Curso_ibfk_1;
+ALTER TABLE Curso DROP COLUMN Gradecurricular_id;
+
+
+ALTER TABLE GradeCurricular ADD COLUMN `Curso_id` INT NOT NULL;
+ALTER TABLE GradeCurricular ADD FOREIGN KEY (`Curso_id`) REFERENCES `escola`.`Curso` (`id`);
 
