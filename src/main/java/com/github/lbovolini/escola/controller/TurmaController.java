@@ -6,8 +6,6 @@ import com.github.lbovolini.escola.service.TurmaService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Path("/api/v1/turmas")
 public class TurmaController {
