@@ -8,13 +8,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Path("/api/v1/cursos")
 public class CursoController {
-
-    private static final Logger LOGGER = Logger.getLogger(CursoController.class.getName());
 
     private CursoService cursoService;
 
@@ -26,77 +22,47 @@ public class CursoController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
-        try {
-            cursoService.delete(id);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        cursoService.delete(id);
+        return Response.ok().build();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
-        try {
-            CursoDTO cursoDTO = cursoService.find(id);
-            return Response.ok().entity(cursoDTO).build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        CursoDTO cursoDTO = cursoService.find(id);
+        return Response.ok().entity(cursoDTO).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll()
     {
-        try {
-            List<CursoDTO> cursoDTOList = cursoService.findAll();
-            return Response.ok().entity(cursoDTOList).build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        List<CursoDTO> cursoDTOList = cursoService.findAll();
+        return Response.ok().entity(cursoDTOList).build();
     }
 
     @GET
     @Path("/gradesCurriculares/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findGrandesCurriculares(@PathParam("id") int id) {
-        try {
-            List<GradeCurricularDTO> gradeCurricularDTOList = cursoService.findGrandesCurriculares(id);
-            return Response.ok().entity(gradeCurricularDTOList).build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        List<GradeCurricularDTO> gradeCurricularDTOList = cursoService.findGrandesCurriculares(id);
+        return Response.ok().entity(gradeCurricularDTOList).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(final CursoDTO cursoDto) {
-        try {
-            cursoService.save(cursoDto);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        cursoService.save(cursoDto);
+        return Response.ok().build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(final CursoDTO cursoDto) {
-        try {
-            cursoService.update(cursoDto);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        cursoService.update(cursoDto);
+        return Response.ok().build();
     }
 }

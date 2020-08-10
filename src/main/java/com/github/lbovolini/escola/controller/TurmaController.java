@@ -12,8 +12,6 @@ import java.util.logging.Logger;
 @Path("/api/v1/turmas")
 public class TurmaController {
 
-    private static final Logger LOGGER = Logger.getLogger(TurmaController.class.getName());
-
     private TurmaService turmaService;
 
     public TurmaController() {
@@ -24,51 +22,31 @@ public class TurmaController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
-        try {
-            turmaService.delete(id);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        turmaService.delete(id);
+        return Response.ok().build();
     }
 
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
-        try {
-            TurmaDTO turmaDTO = turmaService.find(id);
-            return Response.ok().entity(turmaDTO).build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        TurmaDTO turmaDTO = turmaService.find(id);
+        return Response.ok().entity(turmaDTO).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(TurmaDTO turmaDTO) {
-        try {
-            turmaService.save(turmaDTO);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        turmaService.save(turmaDTO);
+        return Response.ok().build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(TurmaDTO turmaDTO) {
-        try {
-            turmaService.update(turmaDTO);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-            return Response.serverError().build();
-        }
+        turmaService.update(turmaDTO);
+        return Response.ok().build();
     }
 }

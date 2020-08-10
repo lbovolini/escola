@@ -1,11 +1,9 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.exception.EmailAlreadyRegisteredException;
+import com.github.lbovolini.escola.exception.NotFoundException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
@@ -75,6 +73,8 @@ public class RepositoryBase<T> {
             }
 
             return query1.getSingleResult();
+        } catch (NoResultException nre) {
+            throw new NotFoundException();
         } finally {
             if (entityManager != null) {
                 entityManager.close();
