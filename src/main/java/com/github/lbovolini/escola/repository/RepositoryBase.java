@@ -32,6 +32,23 @@ public class RepositoryBase<T> {
         }
     }
 
+    public List execute(String query, List parameters) {
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            Query query1 = entityManager.createQuery(query);
+            for (int i = 0; i < parameters.size(); i++) {
+                query1.setParameter(i + 1, parameters.get(i));
+            }
+
+            return query1.getResultList();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+
     public Object executeSingle(String query) {
         EntityManager entityManager = null;
         try {

@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
+import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.service.CursoService;
 
 import javax.ws.rs.*;
@@ -54,6 +55,19 @@ public class CursoController {
         try {
             List<CursoDTO> cursoDTOList = cursoService.findAll();
             return Response.ok().entity(cursoDTOList).build();
+        } catch (Exception e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/gradesCurriculares/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findGrandesCurriculares(@PathParam("id") int id) {
+        try {
+            List<GradeCurricularDTO> gradeCurricularDTOList = cursoService.findGrandesCurriculares(id);
+            return Response.ok().entity(gradeCurricularDTOList).build();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
             return Response.serverError().build();

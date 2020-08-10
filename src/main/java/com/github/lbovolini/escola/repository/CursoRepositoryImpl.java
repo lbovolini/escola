@@ -1,11 +1,15 @@
 package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
+import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.model.Curso;
+import com.github.lbovolini.escola.model.GradeCurricular;
 import com.github.lbovolini.escola.util.CursoUtil;
+import com.github.lbovolini.escola.util.GradeCurricularUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CursoRepositoryImpl extends RepositoryBase<Curso> implements CursoRepository {
 
@@ -22,6 +26,19 @@ public class CursoRepositoryImpl extends RepositoryBase<Curso> implements CursoR
         }
 
         return cursoDTOList;
+    }
+
+    @Override
+    public List<GradeCurricularDTO> findGrandesCurriculares(int id) {
+        String query = "SELECT gc FROM GradeCurricular gc WHERE gc.curso = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(id);
+
+        List<GradeCurricular> gradeCurricularList = execute(query, parameters);
+        List<GradeCurricularDTO> gradeCurricularDTOList = gradeCurricularList.stream().map(GradeCurricularUtil::toDTO).collect(Collectors.toList());
+
+        return gradeCurricularDTOList;
     }
 
     @Override

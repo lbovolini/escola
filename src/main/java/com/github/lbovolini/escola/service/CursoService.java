@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.CursoDTO;
+import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.repository.CursoRepository;
 import com.github.lbovolini.escola.repository.CursoRepositoryImpl;
 
@@ -24,6 +25,10 @@ public class CursoService {
 
     public List<CursoDTO> findAll() {
         return cursoRepository.findAll();
+    }
+
+    public List<GradeCurricularDTO> findGrandesCurriculares(int id) {
+        return cursoRepository.findGrandesCurriculares(id);
     }
 
     public void save(CursoDTO cursoDto) {

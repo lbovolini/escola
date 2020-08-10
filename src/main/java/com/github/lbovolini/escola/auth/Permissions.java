@@ -55,6 +55,7 @@ public class Permissions {
         // CursoController
         permissions.put("/cursos", new Permission("GET", "GET PUT", "*"));
         permissions.put("/cursos/id", new Permission("GET", "GET", "*"));
+        permissions.put("/cursos/gradesCurriculares/id", new Permission("GET", "GET", "*"));
         // DisciplinaController
         permissions.put("/disciplinas", new Permission("", "POST PUT", "*"));
         permissions.put("/disciplinas/id", new Permission("GET", "DELETE GET", "*"));
