@@ -10,14 +10,22 @@ import java.util.List;
 public class ProfessorRepositoryImpl extends RepositoryBase<Professor> implements ProfessorRepository {
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM Professor WHERE id = " + id;
-        executeDelete(query);
+        String query = "DELETE FROM Professor WHERE id = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(id);
+
+        executeDelete(query, parameters);
     }
 
     @Override
     public ProfessorDTO find(int id) {
-        String query = "SELECT p FROM Professor p WHERE p.id = " + id;
-        Professor professor = (Professor)executeSingle(query);
+        String query = "SELECT p FROM Professor p WHERE p.id = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(id);
+
+        Professor professor = (Professor)executeSingle(query, parameters);
 
         return ProfessorUtil.toDTO(professor);
     }

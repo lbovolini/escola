@@ -4,18 +4,29 @@ import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.model.Turma;
 import com.github.lbovolini.escola.util.TurmaUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TurmaRepositoryImpl extends RepositoryBase<Turma> implements TurmaRepository {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM Turma t WHERE t.id = " + id;
-        executeDelete(query);
+        String query = "DELETE FROM Turma t WHERE t.id = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(id);
+
+        executeDelete(query, parameters);
     }
 
     @Override
     public TurmaDTO find(int id) {
-        String query = "SELECT t FROM Turma t WHERE t.id = " + id;
-        Turma turma = (Turma)executeSingle(query);
+        String query = "SELECT t FROM Turma t WHERE t.id = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(id);
+
+        Turma turma = (Turma)executeSingle(query, parameters);
 
         return TurmaUtil.toDTO(turma);
     }

@@ -17,6 +17,13 @@ public class Aluno {
     @JoinColumn(name = "Curso_id", referencedColumnName = "id")
     private Curso curso;
 
+    public Aluno() {
+    }
+
+    public Aluno(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
