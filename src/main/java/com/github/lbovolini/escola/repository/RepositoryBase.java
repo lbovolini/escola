@@ -130,6 +130,26 @@ public class RepositoryBase<T> {
         }
     }
 
+    public void executeDelete(String query, List parameters) {
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            entityManager.getTransaction().begin();
+
+            Query query1 = entityManager.createQuery(query);
+            for (int i = 0; i < parameters.size(); i++) {
+                query1.setParameter(i + 1, parameters.get(i));
+            }
+            query1.executeUpdate();
+
+            entityManager.getTransaction().commit();
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+    }
+
     public T save(T table) {
 
         EntityManager entityManager = null;
