@@ -23,7 +23,7 @@ public class ProfessorController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         professorService.delete(id);
-        return Response.ok().build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @GET
@@ -39,7 +39,7 @@ public class ProfessorController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(ProfessorDTO professorDTO) {
         professorService.save(professorDTO);
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT

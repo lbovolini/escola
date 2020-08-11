@@ -23,7 +23,7 @@ public class TurmaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         turmaService.delete(id);
-        return Response.ok().build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @GET
@@ -39,7 +39,7 @@ public class TurmaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(TurmaDTO turmaDTO) {
         turmaService.save(turmaDTO);
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT

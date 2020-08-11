@@ -25,7 +25,7 @@ public class CursoController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         cursoService.delete(id);
-        return Response.ok().build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @GET
@@ -57,7 +57,7 @@ public class CursoController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(final CursoDTO cursoDto) {
         cursoService.save(cursoDto);
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT

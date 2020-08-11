@@ -25,7 +25,7 @@ public class DisciplinaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         disciplinaService.delete(id);
-        return Response.ok().build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @GET
@@ -49,7 +49,7 @@ public class DisciplinaController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(DisciplinaDTO disciplinaDTO) {
         disciplinaService.save(disciplinaDTO);
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT

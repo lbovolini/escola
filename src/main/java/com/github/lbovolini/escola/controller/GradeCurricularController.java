@@ -25,7 +25,7 @@ public class GradeCurricularController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         gradeCurricularService.delete(id);
-        return Response.ok().build();
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @GET
@@ -49,7 +49,7 @@ public class GradeCurricularController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(GradeCurricularDTO gradeCurricularDTO) {
         gradeCurricularService.save(gradeCurricularDTO);
-        return Response.ok().build();
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
