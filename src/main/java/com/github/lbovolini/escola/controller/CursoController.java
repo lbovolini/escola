@@ -4,6 +4,7 @@ import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.service.CursoService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,10 +13,11 @@ import java.util.List;
 @Path("/api/v1/cursos")
 public class CursoController {
 
-    private CursoService cursoService;
+    private final CursoService cursoService;
 
-    public CursoController() {
-        this.cursoService = new CursoService();
+    @Inject
+    public CursoController(CursoService cursoService) {
+        this.cursoService = cursoService;
     }
 
     @DELETE

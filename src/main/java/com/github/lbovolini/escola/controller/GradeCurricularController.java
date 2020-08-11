@@ -4,6 +4,7 @@ import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.service.GradeCurricularService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,10 +13,11 @@ import java.util.List;
 @Path("/api/v1/gradescurriculares")
 public class GradeCurricularController {
 
-    private GradeCurricularService gradeCurricularService;
+    private final GradeCurricularService gradeCurricularService;
 
-    public GradeCurricularController() {
-        this.gradeCurricularService = new GradeCurricularService();
+    @Inject
+    public GradeCurricularController(GradeCurricularService gradeCurricularService) {
+        this.gradeCurricularService = gradeCurricularService;
     }
 
     @DELETE

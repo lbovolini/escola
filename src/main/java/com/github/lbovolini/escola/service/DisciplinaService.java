@@ -3,16 +3,17 @@ package com.github.lbovolini.escola.service;
 import com.github.lbovolini.escola.dto.AulaDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.repository.DisciplinaRepository;
-import com.github.lbovolini.escola.repository.DisciplinaRepositoryImpl;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class DisciplinaService {
 
-    private DisciplinaRepository disciplinaRepository;
+    private final DisciplinaRepository disciplinaRepository;
 
-    public DisciplinaService() {
-        this.disciplinaRepository = new DisciplinaRepositoryImpl();
+    @Inject
+    public DisciplinaService(DisciplinaRepository disciplinaRepository) {
+        this.disciplinaRepository = disciplinaRepository;
     }
 
     public void delete(int id) {

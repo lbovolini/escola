@@ -2,17 +2,18 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.ProfessorDTO;
 import com.github.lbovolini.escola.repository.ProfessorRepository;
-import com.github.lbovolini.escola.repository.ProfessorRepositoryImpl;
-import com.github.lbovolini.escola.util.AlunoUtil;
 import com.github.lbovolini.escola.util.ProfessorUtil;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import javax.inject.Inject;
+
 public class ProfessorService {
 
-    private ProfessorRepository professorRepository;
+    private final ProfessorRepository professorRepository;
 
-    public ProfessorService() {
-        this.professorRepository = new ProfessorRepositoryImpl();
+    @Inject
+    public ProfessorService(ProfessorRepository professorRepository) {
+        this.professorRepository = professorRepository;
     }
 
     public void delete(int id) {

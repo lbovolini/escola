@@ -3,16 +3,17 @@ package com.github.lbovolini.escola.service;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.GradeCurricularDTO;
 import com.github.lbovolini.escola.repository.GradeCurricularRepository;
-import com.github.lbovolini.escola.repository.GradeCurricularRepositoryImpl;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class GradeCurricularService {
 
-    private GradeCurricularRepository gradeCurricularRepository;
+    private final GradeCurricularRepository gradeCurricularRepository;
 
-    public GradeCurricularService() {
-        this.gradeCurricularRepository = new GradeCurricularRepositoryImpl();
+    @Inject
+    public GradeCurricularService(GradeCurricularRepository gradeCurricularRepository) {
+        this.gradeCurricularRepository = gradeCurricularRepository;
     }
 
     public void delete(int id) {

@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.controller;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.service.TurmaService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -10,10 +11,11 @@ import javax.ws.rs.core.Response;
 @Path("/api/v1/turmas")
 public class TurmaController {
 
-    private TurmaService turmaService;
+    private final TurmaService turmaService;
 
-    public TurmaController() {
-        this.turmaService = new TurmaService();
+    @Inject
+    public TurmaController(TurmaService turmaService) {
+        this.turmaService = turmaService;
     }
 
     @DELETE

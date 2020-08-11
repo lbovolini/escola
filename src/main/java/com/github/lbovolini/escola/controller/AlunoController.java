@@ -6,6 +6,7 @@ import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.service.AlunoService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,10 +15,11 @@ import java.util.List;
 @Path("/api/v1/alunos")
 public class AlunoController {
 
-    private AlunoService alunoService;
+    private final AlunoService alunoService;
 
-    public AlunoController() {
-        this.alunoService = new AlunoService();
+    @Inject
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
     }
 
     @DELETE

@@ -4,6 +4,7 @@ import com.github.lbovolini.escola.dto.AulaDTO;
 import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.service.DisciplinaService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -12,10 +13,11 @@ import java.util.List;
 @Path("/api/v1/disciplinas")
 public class DisciplinaController {
 
-    private DisciplinaService disciplinaService;
+    private final DisciplinaService disciplinaService;
 
-    public DisciplinaController() {
-        this.disciplinaService = new DisciplinaService();
+    @Inject
+    public DisciplinaController(DisciplinaService disciplinaService) {
+        this.disciplinaService = disciplinaService;
     }
 
     @DELETE

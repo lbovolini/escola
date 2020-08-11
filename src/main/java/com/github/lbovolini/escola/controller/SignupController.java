@@ -5,19 +5,22 @@ import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.service.AlunoService;
 import com.github.lbovolini.escola.service.CursoService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+
 @Path("/signup")
 public class SignupController {
 
-    private CursoService cursoService;
-    private AlunoService alunoService;
+    private final CursoService cursoService;
+    private final AlunoService alunoService;
 
-    public SignupController() {
-        this.cursoService = new CursoService();
-        this.alunoService = new AlunoService();
+    @Inject
+    public SignupController(CursoService cursoService, AlunoService alunoService) {
+        this.cursoService = cursoService;
+        this.alunoService = alunoService;
     }
 
     @GET

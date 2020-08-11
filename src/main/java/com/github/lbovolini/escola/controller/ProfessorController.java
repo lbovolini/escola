@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.controller;
 import com.github.lbovolini.escola.dto.ProfessorDTO;
 import com.github.lbovolini.escola.service.ProfessorService;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -10,10 +11,11 @@ import javax.ws.rs.core.Response;
 @Path("/api/v1/professores")
 public class ProfessorController {
 
-    private ProfessorService professorService;
+    private final ProfessorService professorService;
 
-    public ProfessorController() {
-        this.professorService = new ProfessorService();
+    @Inject
+    public ProfessorController(ProfessorService professorService) {
+        this.professorService = professorService;
     }
 
     @DELETE

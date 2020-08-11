@@ -6,18 +6,19 @@ import com.github.lbovolini.escola.dto.DisciplinaDTO;
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.exception.InvalidPasswordException;
 import com.github.lbovolini.escola.repository.AlunoRepository;
-import com.github.lbovolini.escola.repository.AlunoRepositoryImpl;
 import com.github.lbovolini.escola.util.AlunoUtil;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class AlunoService {
 
-    private AlunoRepository alunoRepository;
+    private final AlunoRepository alunoRepository;
 
-    public AlunoService() {
-        this.alunoRepository = new AlunoRepositoryImpl();
+    @Inject
+    public AlunoService(AlunoRepository alunoRepository) {
+        this.alunoRepository = alunoRepository;
     }
 
     public void delete(int id) {

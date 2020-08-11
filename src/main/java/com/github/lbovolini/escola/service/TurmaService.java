@@ -2,14 +2,16 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.TurmaDTO;
 import com.github.lbovolini.escola.repository.TurmaRepository;
-import com.github.lbovolini.escola.repository.TurmaRepositoryImpl;
+
+import javax.inject.Inject;
 
 public class TurmaService {
 
-    private TurmaRepository turmaRepository;
+    private final TurmaRepository turmaRepository;
 
-    public TurmaService() {
-        this.turmaRepository = new TurmaRepositoryImpl();
+    @Inject
+    public TurmaService(TurmaRepository turmaRepository) {
+        this.turmaRepository = turmaRepository;
     }
 
     public void delete(int id) {

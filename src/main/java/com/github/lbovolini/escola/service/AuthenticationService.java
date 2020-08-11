@@ -12,6 +12,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.crypto.spec.SecretKeySpec;
+import javax.inject.Inject;
 import javax.xml.bind.DatatypeConverter;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,14 +23,15 @@ public class AuthenticationService {
     public static final String BEARER_PREFIX = "Bearer";
     public static String HASH_SHA512 = "D31F9BB81B68134704060B4EE6FC772CF98F69D699A8456B296BD2D69AAF276E4AF927D0E5C62A8A4C85EC463B30ECB18D96D994A1B72D07A5D8503A9206080B";
 
-    private AlunoRepository alunoRepository;
-    private ProfessorRepository professorRepository;
-    private AdministradorRepository administradorRepository;
+    private final AlunoRepository alunoRepository;
+    private final ProfessorRepository professorRepository;
+    private final AdministradorRepository administradorRepository;
 
-    public AuthenticationService() {
-        this.alunoRepository = new AlunoRepositoryImpl();
-        this.professorRepository = new ProfessorRepositoryImpl();
-        this.administradorRepository = new AdministradorRepositoryImpl();
+    @Inject
+    public AuthenticationService(AlunoRepository alunoRepository, ProfessorRepository professorRepository, AdministradorRepository administradorRepository) {
+        this.alunoRepository = alunoRepository;
+        this.professorRepository = professorRepository;
+        this.administradorRepository = administradorRepository;
     }
 
     public void validateAdministrator(Credentials credentials) throws InvalidCredentialsException {

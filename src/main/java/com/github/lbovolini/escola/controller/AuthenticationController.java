@@ -6,19 +6,20 @@ import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.service.AuthenticationService;
 import com.github.lbovolini.escola.util.AlunoUtil;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
 @Path("/")
 public class AuthenticationController {
 
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
-    public AuthenticationController() {
-        this.authenticationService = new AuthenticationService();
+    @Inject
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
     @POST
