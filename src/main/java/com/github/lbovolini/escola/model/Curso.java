@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Curso {
@@ -30,5 +31,19 @@ public class Curso {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Curso curso = (Curso) o;
+        return id == curso.id &&
+                Objects.equals(name, curso.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

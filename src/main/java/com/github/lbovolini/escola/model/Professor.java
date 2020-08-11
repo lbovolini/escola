@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Professor {
@@ -52,5 +53,21 @@ public class Professor {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Professor professor = (Professor) o;
+        return id == professor.id &&
+                Objects.equals(name, professor.name) &&
+                Objects.equals(email, professor.email) &&
+                Objects.equals(password, professor.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password);
     }
 }

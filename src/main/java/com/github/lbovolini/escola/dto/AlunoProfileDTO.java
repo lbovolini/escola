@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AlunoProfileDTO {
 
@@ -64,5 +65,23 @@ public class AlunoProfileDTO {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AlunoProfileDTO that = (AlunoProfileDTO) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(newPassword, that.newPassword) &&
+                Objects.equals(birthday, that.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password, newPassword, birthday);
     }
 }

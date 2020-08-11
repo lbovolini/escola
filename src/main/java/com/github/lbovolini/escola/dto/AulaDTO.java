@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.dto;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class AulaDTO {
 
@@ -30,5 +31,20 @@ public class AulaDTO {
 
     public void setDay(Date day) {
         this.day = day;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AulaDTO aulaDTO = (AulaDTO) o;
+        return disciplinaId == aulaDTO.disciplinaId &&
+                turmaId == aulaDTO.turmaId &&
+                Objects.equals(day, aulaDTO.day);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(disciplinaId, turmaId, day);
     }
 }

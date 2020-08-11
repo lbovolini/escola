@@ -1,5 +1,7 @@
 package com.github.lbovolini.escola.dto;
 
+import java.util.Objects;
+
 public class ProfessorDTO {
 
     private int id;
@@ -44,5 +46,21 @@ public class ProfessorDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfessorDTO that = (ProfessorDTO) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password);
     }
 }

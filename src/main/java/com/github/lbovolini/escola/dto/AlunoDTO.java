@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AlunoDTO {
 
@@ -71,5 +72,23 @@ public class AlunoDTO {
 
     public void setCursoDTO(CursoDTO cursoDTO) {
         this.cursoDTO = cursoDTO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AlunoDTO alunoDTO = (AlunoDTO) o;
+        return id == alunoDTO.id &&
+                Objects.equals(name, alunoDTO.name) &&
+                Objects.equals(email, alunoDTO.email) &&
+                Objects.equals(password, alunoDTO.password) &&
+                Objects.equals(birthday, alunoDTO.birthday) &&
+                Objects.equals(cursoDTO, alunoDTO.cursoDTO);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password, birthday, cursoDTO);
     }
 }

@@ -1,5 +1,7 @@
 package com.github.lbovolini.escola.dto;
 
+import java.util.Objects;
+
 public class UsuarioDTO {
 
     private int id;
@@ -46,5 +48,22 @@ public class UsuarioDTO {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UsuarioDTO that = (UsuarioDTO) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(role, that.role) &&
+                Objects.equals(token, that.token);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, role, token);
     }
 }

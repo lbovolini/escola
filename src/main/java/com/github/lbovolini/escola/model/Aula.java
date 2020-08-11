@@ -1,6 +1,7 @@
 package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Aula {
@@ -40,5 +41,20 @@ public class Aula {
 
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aula aula = (Aula) o;
+        return Objects.equals(aulaId, aula.aulaId) &&
+                Objects.equals(disciplina, aula.disciplina) &&
+                Objects.equals(turma, aula.turma);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aulaId, disciplina, turma);
     }
 }

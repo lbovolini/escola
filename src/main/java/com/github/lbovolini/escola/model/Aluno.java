@@ -2,6 +2,7 @@ package com.github.lbovolini.escola.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Aluno {
@@ -70,5 +71,23 @@ public class Aluno {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aluno aluno = (Aluno) o;
+        return id == aluno.id &&
+                Objects.equals(name, aluno.name) &&
+                Objects.equals(email, aluno.email) &&
+                Objects.equals(password, aluno.password) &&
+                Objects.equals(birthday, aluno.birthday) &&
+                Objects.equals(curso, aluno.curso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password, birthday, curso);
     }
 }
