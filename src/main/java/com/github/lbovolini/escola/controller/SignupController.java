@@ -1,9 +1,9 @@
 package com.github.lbovolini.escola.controller;
 
-import com.github.lbovolini.escola.dto.AlunoDTO;
-import com.github.lbovolini.escola.dto.CursoDTO;
-import com.github.lbovolini.escola.service.AlunoService;
-import com.github.lbovolini.escola.service.CursoService;
+import com.github.lbovolini.escola.dto.StudentDTO;
+import com.github.lbovolini.escola.dto.CourseDTO;
+import com.github.lbovolini.escola.service.StudentService;
+import com.github.lbovolini.escola.service.CourseService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -14,13 +14,13 @@ import java.util.List;
 @Path("/signup")
 public class SignupController {
 
-    private final CursoService cursoService;
-    private final AlunoService alunoService;
+    private final CourseService courseService;
+    private final StudentService studentService;
 
     @Inject
-    public SignupController(CursoService cursoService, AlunoService alunoService) {
-        this.cursoService = cursoService;
-        this.alunoService = alunoService;
+    public SignupController(CourseService courseService, StudentService studentService) {
+        this.courseService = courseService;
+        this.studentService = studentService;
     }
 
     @GET
@@ -28,16 +28,16 @@ public class SignupController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAllCourses()
     {
-        List<CursoDTO> cursoDTOList = cursoService.findAll();
-        return Response.ok().entity(cursoDTOList).build();
+        List<CourseDTO> courseDTOList = courseService.findAll();
+        return Response.ok().entity(courseDTOList).build();
     }
 
     @POST
     @Path("/students")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response saveStudent(final AlunoDTO alunoDto) {
-        alunoService.save(alunoDto);
+    public Response saveStudent(final StudentDTO studentDto) {
+        studentService.save(studentDto);
         return Response.ok().build();
     }
 }

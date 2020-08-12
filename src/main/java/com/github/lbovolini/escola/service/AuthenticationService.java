@@ -2,7 +2,7 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.auth.Credentials;
 import com.github.lbovolini.escola.auth.Role;
-import com.github.lbovolini.escola.dto.AlunoDTO;
+import com.github.lbovolini.escola.dto.StudentDTO;
 import com.github.lbovolini.escola.exception.InvalidCredentialsException;
 import com.github.lbovolini.escola.repository.*;
 import io.jsonwebtoken.Claims;
@@ -23,15 +23,15 @@ public class AuthenticationService {
     public static final String BEARER_PREFIX = "Bearer";
     public static String HASH_SHA512 = "D31F9BB81B68134704060B4EE6FC772CF98F69D699A8456B296BD2D69AAF276E4AF927D0E5C62A8A4C85EC463B30ECB18D96D994A1B72D07A5D8503A9206080B";
 
-    private final AlunoRepository alunoRepository;
-    private final ProfessorRepository professorRepository;
-    private final AdministradorRepository administradorRepository;
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
+    private final AdministratorRepository administratorRepository;
 
     @Inject
-    public AuthenticationService(AlunoRepository alunoRepository, ProfessorRepository professorRepository, AdministradorRepository administradorRepository) {
-        this.alunoRepository = alunoRepository;
-        this.professorRepository = professorRepository;
-        this.administradorRepository = administradorRepository;
+    public AuthenticationService(StudentRepository studentRepository, TeacherRepository teacherRepository, AdministratorRepository administratorRepository) {
+        this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
+        this.administratorRepository = administratorRepository;
     }
 
     public void validateAdministrator(Credentials credentials) throws InvalidCredentialsException {
@@ -40,7 +40,7 @@ public class AuthenticationService {
             throw new InvalidCredentialsException();
         }
 
-        String hashPassword = administradorRepository.findPassword(credentials.getEmail());
+        String hashPassword = administratorRepository.findPassword(credentials.getEmail());
 
         boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
 
@@ -49,21 +49,21 @@ public class AuthenticationService {
         }
     }
 
-    public AlunoDTO validateStudent(Credentials credentials) throws InvalidCredentialsException {
+    public StudentDTO validateStudent(Credentials credentials) throws InvalidCredentialsException {
 
         if (!credentials.getRole().equals(Role.student())) {
             throw new InvalidCredentialsException();
         }
 
-        AlunoDTO alunoDTO = alunoRepository.findByEmail(credentials.getEmail());
+        StudentDTO studentDTO = studentRepository.findByEmail(credentials.getEmail());
 
-        boolean valid = BCrypt.checkpw(credentials.getPassword(), alunoDTO.getPassword());
+        boolean valid = BCrypt.checkpw(credentials.getPassword(), studentDTO.getPassword());
 
         if (!valid) {
             throw new InvalidCredentialsException();
         }
 
-        return alunoDTO;
+        return studentDTO;
     }
 
     public void validateTeacher(Credentials credentials) throws InvalidCredentialsException {
@@ -72,7 +72,7 @@ public class AuthenticationService {
             throw new InvalidCredentialsException();
         }
 
-        String hashPassword = professorRepository.findPassword(credentials.getEmail());
+        String hashPassword = teacherRepository.findPassword(credentials.getEmail());
 
         boolean valid = BCrypt.checkpw(credentials.getPassword(), hashPassword);
 

@@ -1,10 +1,10 @@
 package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
-import com.github.lbovolini.escola.dto.AlunoDTO;
-import com.github.lbovolini.escola.dto.UsuarioDTO;
+import com.github.lbovolini.escola.dto.StudentDTO;
+import com.github.lbovolini.escola.dto.UserDTO;
 import com.github.lbovolini.escola.service.AuthenticationService;
-import com.github.lbovolini.escola.util.AlunoUtil;
+import com.github.lbovolini.escola.util.StudentUtil;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -37,10 +37,10 @@ public class AuthenticationController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response studentLogin(Credentials credentials) {
-        AlunoDTO alunoDTO = authenticationService.validateStudent(credentials);
+        StudentDTO studentDTO = authenticationService.validateStudent(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
-        UsuarioDTO usuarioDTO = AlunoUtil.toUsuarioDTO(alunoDTO, credentials.getRole(), token);
-        return Response.ok().entity(usuarioDTO).build();
+        UserDTO userDTO = StudentUtil.toUsuarioDTO(studentDTO, credentials.getRole(), token);
+        return Response.ok().entity(userDTO).build();
     }
 
     @POST

@@ -9,19 +9,19 @@ public class DependencyBinder extends AbstractBinder {
     @Override
     protected void configure() {
         // Service
-        bind(AlunoService.class).to(AlunoService.class);
+        bind(StudentService.class).to(StudentService.class);
         bind(AuthenticationService.class).to(AuthenticationService.class);
-        bind(CursoService.class).to(CursoService.class);
-        bind(DisciplinaService.class).to(DisciplinaService.class);
-        bind(GradeCurricularService.class).to(GradeCurricularService.class);
-        bind(ProfessorService.class).to(ProfessorService.class);
-        bind(TurmaService.class).to(TurmaService.class);
+        bind(CourseService.class).to(CourseService.class);
+        bind(DisciplineService.class).to(DisciplineService.class);
+        bind(CurriculumService.class).to(CurriculumService.class);
+        bind(TeacherService.class).to(TeacherService.class);
+        bind(GroupService.class).to(GroupService.class);
         // Repository
-        bind(AlunoRepositoryImpl.class).to(AlunoRepository.class);
-        bind(CursoRepositoryImpl.class).to(CursoRepository.class);
-        bind(DisciplinaRepositoryImpl.class).to(DisciplinaRepository.class);
-        bind(GradeCurricularRepositoryImpl.class).to(GradeCurricularRepository.class);
-        bind(ProfessorRepositoryImpl.class).to(ProfessorRepository.class);
-        bind(TurmaRepositoryImpl.class).to(TurmaRepository.class);
+        bind(StudentRepositoryImpl.class).to(StudentRepository.class);
+        bind(CourseRepositoryImpl.class).to(CourseRepository.class);
+        bind(DisciplineRepositoryImpl.class).to(DisciplineRepository.class);
+        bind(CurriculumRepositoryImpl.class).to(CurriculumRepository.class);
+        bind(TeacherRepositoryImpl.class).to(TeacherRepository.class);
+        bind(GroupRepositoryImpl.class).to(GroupRepository.class);
     }
 }
