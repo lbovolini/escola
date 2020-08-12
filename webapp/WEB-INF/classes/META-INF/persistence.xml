@@ -4,18 +4,18 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
     <persistence-unit name="Escola">
-        <class>com.github.lbovolini.escola.model.Curso</class>
-        <class>com.github.lbovolini.escola.model.Aluno</class>
-        <class>com.github.lbovolini.escola.model.Turma</class>
-        <class>com.github.lbovolini.escola.model.AlunoTurma</class>
-        <class>com.github.lbovolini.escola.model.Professor</class>
-        <class>com.github.lbovolini.escola.model.Disciplina</class>
-        <class>com.github.lbovolini.escola.model.Matricula</class>
-        <class>com.github.lbovolini.escola.model.Aula</class>
-        <class>com.github.lbovolini.escola.model.Ministra</class>
-        <class>com.github.lbovolini.escola.model.GradeCurricular</class>
-        <class>com.github.lbovolini.escola.model.DisciplinaGradeCurricular</class>
-        <class>com.github.lbovolini.escola.model.Administrador</class>
+        <class>com.github.lbovolini.escola.model.Course</class>
+        <class>com.github.lbovolini.escola.model.Student</class>
+        <class>com.github.lbovolini.escola.model.Group</class>
+        <class>com.github.lbovolini.escola.model.StudentGroup</class>
+        <class>com.github.lbovolini.escola.model.Teacher</class>
+        <class>com.github.lbovolini.escola.model.Discipline</class>
+        <class>com.github.lbovolini.escola.model.Enrollment</class>
+        <class>com.github.lbovolini.escola.model.Class</class>
+        <class>com.github.lbovolini.escola.model.Teach</class>
+        <class>com.github.lbovolini.escola.model.Curriculum</class>
+        <class>com.github.lbovolini.escola.model.DisciplineCurriculum</class>
+        <class>com.github.lbovolini.escola.model.Administrator</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/escola"/>
             <property name="javax.persistence.jdbc.user" value="lbovolini" />
