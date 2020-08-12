@@ -73,7 +73,7 @@ public class StudentUtil {
             errors.add(new InputError("password", "Password is required"));
         }
         else {
-            if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
+            if (!password.matches("^\\$\\d{2}\\$\\S{53}")) {
                 if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
                     errors.add(new InputError("password", "Password require minimum eight characters, at least one letter and one number"));
                 }
@@ -129,7 +129,7 @@ public class StudentUtil {
             errors.add(new InputError("password", "Password is required"));
         }
 
-        if (!password.matches("[\\$\\S+\\$\\S+\\$\\S+]{60}")) {
+        if (!password.matches("^\\$\\d{2}\\$\\S{53}")) {
             if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
                 errors.add(new InputError("password", "Password require minimum eight characters, at least one letter and one number"));
             }
