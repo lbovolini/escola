@@ -11,12 +11,6 @@ public class Curso {
     private int id;
     private String name;
 
-    public Curso() {}
-
-    public Curso(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

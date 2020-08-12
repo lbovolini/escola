@@ -10,17 +10,12 @@ public class Turma {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String number;
+    @Column(name = "Curso_id")
+    private int courseId;
 
     @ManyToOne
-    @JoinColumn(name = "Curso_id", referencedColumnName = "id")
+    @JoinColumn(name = "Curso_id", insertable = false, updatable = false)
     private Curso curso;
-
-    public Turma() {
-    }
-
-    public Turma(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -38,6 +33,14 @@ public class Turma {
         this.number = number;
     }
 
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
     public Curso getCurso() {
         return curso;
     }
@@ -52,12 +55,13 @@ public class Turma {
         if (o == null || getClass() != o.getClass()) return false;
         Turma turma = (Turma) o;
         return id == turma.id &&
+                courseId == turma.courseId &&
                 Objects.equals(number, turma.number) &&
                 Objects.equals(curso, turma.curso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, curso);
+        return Objects.hash(id, number, courseId, curso);
     }
 }

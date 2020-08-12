@@ -37,11 +37,11 @@ public class DisciplinaRepositoryImpl extends RepositoryBase<Disciplina> impleme
 
     @Override
     public List<AulaDTO> findAulas(int disciplinaId, int alunoId) {
-        String query = "SELECT a FROM Aula a JOIN Turma t ON a.turma = t.id JOIN AlunoTurma at ON at.turma = t.id WHERE at.aluno = ?1 AND a.disciplina = ?2";
+        String query = "SELECT a FROM Aula a JOIN Turma t ON a.groupId = t.id JOIN AlunoTurma at ON at.groupId = t.id WHERE at.studentId = ?1 AND a.disciplineId = ?2";
 
         List parameters = new ArrayList();
-        parameters.add(new Aluno(alunoId));
-        parameters.add(new Disciplina(disciplinaId));
+        parameters.add(alunoId);
+        parameters.add(disciplinaId);
 
         List<Aula> aulaList = execute(query, parameters);
         List<AulaDTO> aulaDTOList = aulaList.stream().map(AulaUtil::toDTO).collect(Collectors.toList());

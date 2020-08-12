@@ -1,8 +1,6 @@
 package com.github.lbovolini.escola.util;
 
-import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.dto.GradeCurricularDTO;
-import com.github.lbovolini.escola.model.Curso;
 import com.github.lbovolini.escola.model.GradeCurricular;
 
 public class GradeCurricularUtil {
@@ -11,7 +9,7 @@ public class GradeCurricularUtil {
         GradeCurricularDTO gradeCurricularDTO = new GradeCurricularDTO();
         gradeCurricularDTO.setId(gradeCurricular.getId());
         gradeCurricularDTO.setYear(gradeCurricular.getYear());
-        gradeCurricularDTO.setCursoDTO(CursoUtil.toDTO(gradeCurricular.getCurso()));
+        gradeCurricularDTO.setCourseId(gradeCurricular.getCourseId());
 
         return gradeCurricularDTO;
     }
@@ -20,7 +18,7 @@ public class GradeCurricularUtil {
         GradeCurricular gradeCurricular = new GradeCurricular();
         gradeCurricular.setId(gradeCurricularDTO.getId());
         gradeCurricular.setYear(gradeCurricularDTO.getYear());
-        gradeCurricular.setCurso(new Curso(gradeCurricularDTO.getCursoDTO().getId()));
+        gradeCurricular.setCourseId(gradeCurricularDTO.getCourseId());
 
         return gradeCurricular;
     }

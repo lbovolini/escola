@@ -7,13 +7,6 @@ public class DisciplinaDTO {
     private int id;
     private String name;
 
-    public DisciplinaDTO() {
-    }
-
-    public DisciplinaDTO(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

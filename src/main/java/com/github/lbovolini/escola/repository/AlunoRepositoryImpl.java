@@ -52,7 +52,7 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
 
     @Override
     public List<DisciplinaDTO> findDisciplinas(int alunoId) {
-        String query = "SELECT d FROM Matricula m JOIN Disciplina d ON m.disciplina = d.id JOIN Aluno a ON m.aluno = a.id WHERE a.id = ?1";
+        String query = "SELECT d FROM Matricula m JOIN Disciplina d ON m.disciplineId = d.id JOIN Aluno a ON m.studentId = a.id WHERE a.id = ?1";
 
         List parameters = new ArrayList();
         parameters.add(alunoId);
@@ -77,7 +77,7 @@ public class AlunoRepositoryImpl extends RepositoryBase<Aluno> implements AlunoR
 
     @Override
     public List<TurmaDTO> findTurmas(int alunoId) {
-        String query = "SELECT t FROM AlunoTurma at JOIN Turma t ON at.turma = t.id JOIN Aluno a ON a.id = at.aluno WHERE a.id = ?1";
+        String query = "SELECT t FROM AlunoTurma at JOIN Turma t ON at.groupId = t.id JOIN Aluno a ON a.id = at.studentId WHERE a.id = ?1";
 
         List parameters = new ArrayList();
         parameters.add(alunoId);

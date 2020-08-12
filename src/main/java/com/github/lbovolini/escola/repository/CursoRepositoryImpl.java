@@ -49,10 +49,10 @@ public class CursoRepositoryImpl extends RepositoryBase<Curso> implements CursoR
 
     @Override
     public List<GradeCurricularDTO> findGrandesCurriculares(int id) {
-        String query = "SELECT gc FROM GradeCurricular gc WHERE gc.curso = ?1";
+        String query = "SELECT gc FROM GradeCurricular gc WHERE gc.courseId = ?1";
 
         List parameters = new ArrayList();
-        parameters.add(new Curso(id));
+        parameters.add(id);
 
         List<GradeCurricular> gradeCurricularList = execute(query, parameters);
         List<GradeCurricularDTO> gradeCurricularDTOList = gradeCurricularList.stream().map(GradeCurricularUtil::toDTO).collect(Collectors.toList());

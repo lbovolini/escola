@@ -6,14 +6,7 @@ public class GradeCurricularDTO {
 
     private int id;
     private int year;
-    private CursoDTO cursoDTO;
-
-    public GradeCurricularDTO() {
-    }
-
-    public GradeCurricularDTO(int id) {
-        this.id = id;
-    }
+    private int courseId;
 
     public int getId() {
         return id;
@@ -31,12 +24,12 @@ public class GradeCurricularDTO {
         this.year = year;
     }
 
-    public CursoDTO getCursoDTO() {
-        return cursoDTO;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setCursoDTO(CursoDTO cursoDTO) {
-        this.cursoDTO = cursoDTO;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     @Override
@@ -46,11 +39,11 @@ public class GradeCurricularDTO {
         GradeCurricularDTO that = (GradeCurricularDTO) o;
         return id == that.id &&
                 year == that.year &&
-                Objects.equals(cursoDTO, that.cursoDTO);
+                courseId == that.courseId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, cursoDTO);
+        return Objects.hash(id, year, courseId);
     }
 }

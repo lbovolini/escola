@@ -10,17 +10,12 @@ public class GradeCurricular {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int year;
+    @Column(name = "Curso_id")
+    private int courseId;
 
     @ManyToOne
-    @JoinColumn(name = "Curso_id", referencedColumnName = "id")
+    @JoinColumn(name = "Curso_id", insertable = false, updatable = false)
     private Curso curso;
-
-    public GradeCurricular() {
-    }
-
-    public GradeCurricular(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -38,6 +33,14 @@ public class GradeCurricular {
         this.year = year;
     }
 
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
     public Curso getCurso() {
         return curso;
     }
@@ -53,11 +56,12 @@ public class GradeCurricular {
         GradeCurricular that = (GradeCurricular) o;
         return id == that.id &&
                 year == that.year &&
+                courseId == that.courseId &&
                 Objects.equals(curso, that.curso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, curso);
+        return Objects.hash(id, year, courseId, curso);
     }
 }

@@ -2,10 +2,8 @@ package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.AlunoDTO;
 import com.github.lbovolini.escola.dto.AlunoProfileDTO;
-import com.github.lbovolini.escola.dto.CursoDTO;
 import com.github.lbovolini.escola.dto.UsuarioDTO;
 import com.github.lbovolini.escola.model.Aluno;
-import com.github.lbovolini.escola.model.Curso;
 
 import java.time.LocalDate;
 
@@ -18,7 +16,7 @@ public class AlunoUtil {
         alunoDTO.setEmail(aluno.getEmail());
         alunoDTO.setPassword(aluno.getPassword());
         alunoDTO.setBirthday(aluno.getBirthday());
-        alunoDTO.setCursoDTO(CursoUtil.toDTO(aluno.getCurso()));
+        alunoDTO.setCourseId(aluno.getCursoId());
 
         return alunoDTO;
     }
@@ -30,7 +28,7 @@ public class AlunoUtil {
         aluno.setEmail(alunoDTO.getEmail());
         aluno.setPassword(alunoDTO.getPassword());
         aluno.setBirthday(alunoDTO.getBirthday());
-        aluno.setCurso(new Curso(alunoDTO.getCursoDTO().getId()));
+        aluno.setCursoId(alunoDTO.getCourseId());
 
         return aluno;
     }
@@ -78,8 +76,8 @@ public class AlunoUtil {
             throw new IllegalArgumentException("Birthday is required");
         }
 
-        CursoDTO cursoDTO = alunoDTO.getCursoDTO();
-        if (cursoDTO == null || cursoDTO.getId() == 0) {
+        int courseId = alunoDTO.getCourseId();
+        if (courseId == 0) {
             throw new IllegalArgumentException("Course is required");
         }
     }

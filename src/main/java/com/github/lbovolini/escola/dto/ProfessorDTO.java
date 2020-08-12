@@ -9,13 +9,6 @@ public class ProfessorDTO {
     private String email;
     private String password;
 
-    public ProfessorDTO() {
-    }
-
-    public ProfessorDTO(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

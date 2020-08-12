@@ -13,17 +13,12 @@ public class Aluno {
     private String email;
     private String password;
     private LocalDate birthday;
+    @Column(name = "Curso_id")
+    private int courseId;
 
-    @OneToOne
-    @JoinColumn(name = "Curso_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "Curso_id", insertable = false, updatable = false)
     private Curso curso;
-
-    public Aluno() {
-    }
-
-    public Aluno(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -65,6 +60,14 @@ public class Aluno {
         this.birthday = birthday;
     }
 
+    public int getCursoId() {
+        return courseId;
+    }
+
+    public void setCursoId(int cursoId) {
+        this.courseId = cursoId;
+    }
+
     public Curso getCurso() {
         return curso;
     }
@@ -73,12 +76,14 @@ public class Aluno {
         this.curso = curso;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
         return id == aluno.id &&
+                courseId == aluno.courseId &&
                 Objects.equals(name, aluno.name) &&
                 Objects.equals(email, aluno.email) &&
                 Objects.equals(password, aluno.password) &&
@@ -88,6 +93,6 @@ public class Aluno {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, password, birthday, curso);
+        return Objects.hash(id, name, email, password, birthday, curso, courseId);
     }
 }

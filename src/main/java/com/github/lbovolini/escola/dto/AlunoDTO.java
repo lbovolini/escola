@@ -17,7 +17,7 @@ public class AlunoDTO {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
-    private CursoDTO cursoDTO;
+    private int courseId;
 
     public AlunoDTO() {
     }
@@ -66,12 +66,12 @@ public class AlunoDTO {
         this.birthday = birthday;
     }
 
-    public CursoDTO getCursoDTO() {
-        return cursoDTO;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setCursoDTO(CursoDTO cursoDTO) {
-        this.cursoDTO = cursoDTO;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     @Override
@@ -80,15 +80,15 @@ public class AlunoDTO {
         if (o == null || getClass() != o.getClass()) return false;
         AlunoDTO alunoDTO = (AlunoDTO) o;
         return id == alunoDTO.id &&
+                courseId == alunoDTO.courseId &&
                 Objects.equals(name, alunoDTO.name) &&
                 Objects.equals(email, alunoDTO.email) &&
                 Objects.equals(password, alunoDTO.password) &&
-                Objects.equals(birthday, alunoDTO.birthday) &&
-                Objects.equals(cursoDTO, alunoDTO.cursoDTO);
+                Objects.equals(birthday, alunoDTO.birthday);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, password, birthday, cursoDTO);
+        return Objects.hash(id, name, email, password, birthday, courseId);
     }
 }

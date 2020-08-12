@@ -6,14 +6,7 @@ public class TurmaDTO {
 
     private int id;
     private String number;
-    private CursoDTO cursoDTO;
-
-    public TurmaDTO() {
-    }
-
-    public TurmaDTO(int id) {
-        this.id = id;
-    }
+    private int courseId;
 
     public int getId() {
         return id;
@@ -31,12 +24,12 @@ public class TurmaDTO {
         this.number = number;
     }
 
-    public CursoDTO getCursoDTO() {
-        return cursoDTO;
+    public int getCourseId() {
+        return courseId;
     }
 
-    public void setCursoDTO(CursoDTO cursoDTO) {
-        this.cursoDTO = cursoDTO;
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
     }
 
     @Override
@@ -45,12 +38,12 @@ public class TurmaDTO {
         if (o == null || getClass() != o.getClass()) return false;
         TurmaDTO turmaDTO = (TurmaDTO) o;
         return id == turmaDTO.id &&
-                Objects.equals(number, turmaDTO.number) &&
-                Objects.equals(cursoDTO, turmaDTO.cursoDTO);
+                courseId == turmaDTO.courseId &&
+                Objects.equals(number, turmaDTO.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, cursoDTO);
+        return Objects.hash(id, number, courseId);
     }
 }

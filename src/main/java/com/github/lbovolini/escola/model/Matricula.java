@@ -8,15 +8,19 @@ public class Matricula {
 
     @EmbeddedId
     private MatriculaId matriculaId;
+    @Column(name = "Aluno_id")
+    private int studentId;
+    @Column(name = "Disciplina_id")
+    private int disciplineId;
 
     @ManyToOne
     @MapsId("Aluno_id")
-    @JoinColumn(name = "Aluno_id")
+    @JoinColumn(name = "Aluno_id", insertable = false, updatable = false)
     private Aluno aluno;
 
     @ManyToOne
     @MapsId("Disciplina_id")
-    @JoinColumn(name = "Disciplina_id")
+    @JoinColumn(name = "Disciplina_id", insertable = false, updatable = false)
     private Disciplina disciplina;
 
     public MatriculaId getMatriculaId() {
@@ -25,6 +29,22 @@ public class Matricula {
 
     public void setMatriculaId(MatriculaId matriculaId) {
         this.matriculaId = matriculaId;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public int getDisciplineId() {
+        return disciplineId;
+    }
+
+    public void setDisciplineId(int disciplineId) {
+        this.disciplineId = disciplineId;
     }
 
     public Aluno getAluno() {
@@ -48,13 +68,15 @@ public class Matricula {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Matricula matricula = (Matricula) o;
-        return Objects.equals(matriculaId, matricula.matriculaId) &&
+        return studentId == matricula.studentId &&
+                disciplineId == matricula.disciplineId &&
+                Objects.equals(matriculaId, matricula.matriculaId) &&
                 Objects.equals(aluno, matricula.aluno) &&
                 Objects.equals(disciplina, matricula.disciplina);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(matriculaId, aluno, disciplina);
+        return Objects.hash(matriculaId, studentId, disciplineId, aluno, disciplina);
     }
 }

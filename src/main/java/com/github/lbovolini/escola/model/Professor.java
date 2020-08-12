@@ -16,13 +16,6 @@ public class Professor {
     private String email;
     private String password;
 
-    public Professor() {
-    }
-
-    public Professor(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }
