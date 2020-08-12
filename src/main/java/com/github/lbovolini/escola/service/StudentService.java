@@ -38,7 +38,7 @@ public class StudentService {
     }
 
     public void save(StudentDTO studentDTO) {
-        StudentUtil.validate(studentDTO);
+        StudentUtil.validateCreate(studentDTO);
         studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         studentRepository.save(studentDTO);
     }
@@ -51,7 +51,7 @@ public class StudentService {
             studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         }
 
-        StudentUtil.validateAll(studentDTO);
+        StudentUtil.validateUpdate(studentDTO);
         studentRepository.update(studentDTO);
     }
 

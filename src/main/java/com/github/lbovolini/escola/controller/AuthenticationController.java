@@ -39,7 +39,7 @@ public class AuthenticationController {
     public Response studentLogin(Credentials credentials) {
         StudentDTO studentDTO = authenticationService.validateStudent(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
-        UserDTO userDTO = StudentUtil.toUsuarioDTO(studentDTO, credentials.getRole(), token);
+        UserDTO userDTO = StudentUtil.toUserDTO(studentDTO, credentials.getRole(), token);
         return Response.ok().entity(userDTO).build();
     }
 
