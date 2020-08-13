@@ -186,8 +186,21 @@ public class RepositoryBase<T> {
         try {
             entityManager = getEntityManager();
             entityManager.getTransaction().begin();
+
             entityManager.merge(table);
+
             entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            Throwable t = ex.getCause();
+            while ((t != null) && !(t instanceof SQLIntegrityConstraintViolationException)) {
+                t = t.getCause();
+            }
+            if (t instanceof SQLIntegrityConstraintViolationException) {
+                if (t.getMessage().endsWith("'email'")) {
+                    throw new EmailAlreadyRegisteredException();
+                }
+            }
+            throw new RuntimeException(ex.getCause());
         } finally {
             if (entityManager != null) {
                 entityManager.close();
