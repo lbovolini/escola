@@ -100,7 +100,7 @@ public class StudentUtil {
         List<InputError> errors = new ArrayList<>();
 
         int id = studentDTO.getId();
-        if(id == 0) {
+        if (id == 0) {
             errors.add(new InputError("id", "Id is required"));
         }
         validateCreate(studentDTO, errors);
@@ -109,6 +109,11 @@ public class StudentUtil {
     public static void validateProfile(StudentProfileDTO studentProfileDTO) {
 
         List<InputError> errors = new ArrayList<>();
+
+        int id = studentProfileDTO.getId();
+        if (id == 0) {
+            errors.add(new InputError("id", "Id is required"));
+        }
 
         String name = studentProfileDTO.getName();
         if (name == null || name.isEmpty()) {
@@ -119,24 +124,29 @@ public class StudentUtil {
         if (email == null || email.isEmpty()) {
             errors.add(new InputError("email", "Email is required"));
         }
-
-        if (!email.matches("^\\S+@\\S+$")) {
-            errors.add(new InputError("email", "Invalid email address"));
+        else {
+            if (!email.matches("^\\S+@\\S+$")) {
+                errors.add(new InputError("email", "Invalid email address"));
+            }
         }
 
         String password = studentProfileDTO.getPassword();
         if (password == null || password.isEmpty()) {
             errors.add(new InputError("password", "Password is required"));
         }
-
-        if (!password.matches("^\\$\\d{2}\\$\\S{53}")) {
-            if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
-                errors.add(new InputError("password", "Password require minimum eight characters, at least one letter and one number"));
+        else {
+            if (!password.matches("^\\$\\d{2}\\$\\S{53}")) {
+                if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
+                    errors.add(new InputError("password", "Password require minimum eight characters, at least one letter and one number"));
+                }
             }
         }
 
         String newPassword = studentProfileDTO.getNewPassword();
-        if (newPassword != null && !newPassword.isEmpty()) {
+        if (newPassword == null || newPassword.isEmpty()) {
+            errors.add(new InputError("newPassword", "Password require minimum eight characters, at least one letter and one number"));
+        }
+        else {
             if (!password.matches("^(?=.*[\\d])(?=.*[a-z])[\\w!@#$%^&*()-=+,.;:]{8,}$")) {
                 errors.add(new InputError("newPassword", "Password require minimum eight characters, at least one letter and one number"));
             }
