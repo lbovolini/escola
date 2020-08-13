@@ -11,6 +11,6 @@ public class EmailAlreadyRegisteredMapper implements ExceptionMapper<EmailAlread
     @Override
     public Response toResponse(EmailAlreadyRegisteredException e) {
         ErrorMessage errorMessage = new ErrorMessage(e.getMessage());
-        return Response.serverError().entity(errorMessage).build();
+        return Response.status(Response.Status.CONFLICT).entity(errorMessage).build();
     }
 }

@@ -11,6 +11,6 @@ public class InvalidCredentialsMapper implements ExceptionMapper<InvalidCredenti
     @Override
     public Response toResponse(InvalidCredentialsException e) {
         ErrorMessage errorMessage = new ErrorMessage(e.getMessage());
-        return Response.serverError().entity(errorMessage).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(errorMessage).build();
     }
 }

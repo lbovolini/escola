@@ -11,6 +11,6 @@ public class InvalidPasswordMapper implements ExceptionMapper<InvalidPasswordExc
     @Override
     public Response toResponse(InvalidPasswordException e) {
         ErrorMessage errorMessage = new ErrorMessage(e.getMessage());
-        return Response.serverError().entity(errorMessage).build();
+        return Response.status(Response.Status.BAD_REQUEST).entity(errorMessage).build();
     }
 }
