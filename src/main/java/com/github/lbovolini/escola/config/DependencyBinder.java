@@ -23,5 +23,6 @@ public class DependencyBinder extends AbstractBinder {
         bind(CurriculumRepositoryImpl.class).to(CurriculumRepository.class);
         bind(TeacherRepositoryImpl.class).to(TeacherRepository.class);
         bind(GroupRepositoryImpl.class).to(GroupRepository.class);
+        bind(AdministratorRepositoryImpl.class).to(AdministratorRepository.class);
     }
 }
