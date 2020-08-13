@@ -6,7 +6,7 @@ import com.github.lbovolini.escola.dto.DisciplineDTO;
 import com.github.lbovolini.escola.dto.GroupDTO;
 import com.github.lbovolini.escola.exception.InvalidPasswordException;
 import com.github.lbovolini.escola.repository.StudentRepository;
-import com.github.lbovolini.escola.util.StudentUtil;
+import com.github.lbovolini.escola.validation.StudentValidation;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.inject.Inject;
@@ -38,7 +38,7 @@ public class StudentService {
     }
 
     public void save(StudentDTO studentDTO) {
-        StudentUtil.validateCreate(studentDTO);
+        StudentValidation.onCreate(studentDTO);
         studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         studentRepository.save(studentDTO);
     }
@@ -51,13 +51,13 @@ public class StudentService {
             studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         }
 
-        StudentUtil.validateUpdate(studentDTO);
+        StudentValidation.onUpdate(studentDTO);
         studentRepository.update(studentDTO);
     }
 
     public void updateProfile(StudentProfileDTO studentProfileDTO) {
 
-        StudentUtil.validateProfile(studentProfileDTO);
+        StudentValidation.onUpdateProfile(studentProfileDTO);
         validatePassword(studentProfileDTO.getId(), studentProfileDTO.getPassword());
 
         String newPassword = studentProfileDTO.getNewPassword();
