@@ -26,7 +26,7 @@ public class TeacherUtil {
         return teacher;
     }
 
-    public static UserDTO toUsuarioDTO(TeacherDTO teacherDTO, String role, String token) {
+    public static UserDTO toUserDTO(TeacherDTO teacherDTO, String role, String token) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(teacherDTO.getId());
         userDTO.setName(teacherDTO.getName());

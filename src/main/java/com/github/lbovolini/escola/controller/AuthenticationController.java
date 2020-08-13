@@ -2,9 +2,11 @@ package com.github.lbovolini.escola.controller;
 
 import com.github.lbovolini.escola.auth.Credentials;
 import com.github.lbovolini.escola.dto.StudentDTO;
+import com.github.lbovolini.escola.dto.TeacherDTO;
 import com.github.lbovolini.escola.dto.UserDTO;
 import com.github.lbovolini.escola.service.AuthenticationService;
 import com.github.lbovolini.escola.util.StudentUtil;
+import com.github.lbovolini.escola.util.TeacherUtil;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -48,8 +50,9 @@ public class AuthenticationController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response teacherLogin(Credentials credentials) {
-        authenticationService.validateTeacher(credentials);
+        TeacherDTO teacherDTO = authenticationService.validateTeacher(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
-        return Response.ok().header(HttpHeaders.AUTHORIZATION, token).entity(token).build();
+        UserDTO userDTO = TeacherUtil.toUserDTO(teacherDTO, credentials.getRole(), token);
+        return Response.ok().entity(userDTO).build();
     }
 }

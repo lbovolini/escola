@@ -31,6 +31,18 @@ public class TeacherRepositoryImpl extends RepositoryBase<Teacher> implements Te
     }
 
     @Override
+    public TeacherDTO findByEmail(String email) {
+        String query = "SELECT t FROM Teacher t WHERE t.email = ?1";
+
+        List parameters = new ArrayList();
+        parameters.add(email);
+
+        Teacher teacher = (Teacher)executeSingle(query, parameters);
+
+        return TeacherUtil.toDTO(teacher);
+    }
+
+    @Override
     public String findPassword(String email) {
         String query = "SELECT password FROM Teacher WHERE email = ?1";
         List parameters = new ArrayList<>();
