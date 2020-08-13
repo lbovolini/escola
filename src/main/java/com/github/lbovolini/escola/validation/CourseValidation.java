@@ -17,7 +17,7 @@ public class CourseValidation {
 
         String name = courseDTO.getName();
         if (name == null || name.isEmpty()) {
-            errors.add(new InputError("name", "Name id required"));
+            errors.add(new InputError("name", "Name is required"));
         }
 
         if (!errors.isEmpty()) {
