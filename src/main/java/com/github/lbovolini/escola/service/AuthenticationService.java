@@ -52,7 +52,7 @@ public class AuthenticationService {
 
     public StudentDTO validateStudent(Credentials credentials) throws InvalidCredentialsException {
 
-        if (!credentials.getRole().equals(Role.student())) {
+        if (!Role.student().equals(credentials.getRole())) {
             throw new InvalidCredentialsException();
         }
 
