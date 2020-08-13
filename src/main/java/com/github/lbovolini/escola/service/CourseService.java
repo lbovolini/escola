@@ -3,6 +3,7 @@ package com.github.lbovolini.escola.service;
 import com.github.lbovolini.escola.dto.CourseDTO;
 import com.github.lbovolini.escola.dto.CurriculumDTO;
 import com.github.lbovolini.escola.repository.CourseRepository;
+import com.github.lbovolini.escola.validation.CourseValidation;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -33,10 +34,12 @@ public class CourseService {
     }
 
     public void save(CourseDTO courseDto) {
+        CourseValidation.onCreate(courseDto);
         courseRepository.save(courseDto);
     }
 
     public void update(CourseDTO courseDto) {
+        CourseValidation.onUpdate(courseDto);
         courseRepository.update(courseDto);
     }
 }
