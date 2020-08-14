@@ -11,11 +11,11 @@ import java.util.List;
 
 public class StudentValidation {
 
-    public static void onCreate(StudentDTO studentDTO) {
-        onCreate(studentDTO, new ArrayList<>());
+    public static void validateCreate(StudentDTO studentDTO) {
+        validateCreate(studentDTO, new ArrayList<>());
     }
 
-    private static void onCreate(StudentDTO studentDTO, List<InputError> errors) {
+    private static void validateCreate(StudentDTO studentDTO, List<InputError> errors) {
 
         String name = studentDTO.getName();
         if (name == null || name.isEmpty()) {
@@ -59,7 +59,7 @@ public class StudentValidation {
         }
     }
 
-    public static void onUpdate(StudentDTO studentDTO) {
+    public static void validateUpdate(StudentDTO studentDTO) {
 
         List<InputError> errors = new ArrayList<>();
 
@@ -67,10 +67,10 @@ public class StudentValidation {
         if (id == 0) {
             errors.add(new InputError("id", "Id is required"));
         }
-        onCreate(studentDTO, errors);
+        validateCreate(studentDTO, errors);
     }
 
-    public static void onUpdateProfile(StudentProfileDTO studentProfileDTO) {
+    public static void validateUpdateProfile(StudentProfileDTO studentProfileDTO) {
 
         List<InputError> errors = new ArrayList<>();
 
