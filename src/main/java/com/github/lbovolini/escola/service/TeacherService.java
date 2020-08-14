@@ -2,7 +2,7 @@ package com.github.lbovolini.escola.service;
 
 import com.github.lbovolini.escola.dto.TeacherDTO;
 import com.github.lbovolini.escola.repository.TeacherRepository;
-import com.github.lbovolini.escola.util.TeacherUtil;
+import com.github.lbovolini.escola.validation.TeacherValidation;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.inject.Inject;
@@ -25,7 +25,7 @@ public class TeacherService {
     }
 
     public void save(TeacherDTO teacherDTO) {
-        TeacherUtil.validate(teacherDTO);
+        TeacherValidation.validateCreate(teacherDTO);
         teacherDTO.setPassword(BCrypt.hashpw(teacherDTO.getPassword(), BCrypt.gensalt(12)));
         teacherRepository.save(teacherDTO);
     }
@@ -37,7 +37,7 @@ public class TeacherService {
             teacherDTO.setPassword(BCrypt.hashpw(teacherDTO.getPassword(), BCrypt.gensalt(12)));
         }
 
-        TeacherUtil.validateAll(teacherDTO);
+        TeacherValidation.validateUpdate(teacherDTO);
         teacherRepository.update(teacherDTO);
     }
 }

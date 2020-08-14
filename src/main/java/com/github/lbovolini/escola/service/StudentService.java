@@ -38,7 +38,7 @@ public class StudentService {
     }
 
     public void save(StudentDTO studentDTO) {
-        StudentValidation.onCreate(studentDTO);
+        StudentValidation.validateCreate(studentDTO);
         studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         studentRepository.save(studentDTO);
     }
@@ -51,13 +51,13 @@ public class StudentService {
             studentDTO.setPassword(BCrypt.hashpw(studentDTO.getPassword(), BCrypt.gensalt(12)));
         }
 
-        StudentValidation.onUpdate(studentDTO);
+        StudentValidation.validateUpdate(studentDTO);
         studentRepository.update(studentDTO);
     }
 
     public void updateProfile(StudentProfileDTO studentProfileDTO) {
 
-        StudentValidation.onUpdateProfile(studentProfileDTO);
+        StudentValidation.validateUpdateProfile(studentProfileDTO);
         validatePassword(studentProfileDTO.getId(), studentProfileDTO.getPassword());
 
         String newPassword = studentProfileDTO.getNewPassword();

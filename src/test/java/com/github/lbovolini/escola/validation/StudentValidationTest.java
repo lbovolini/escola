@@ -33,7 +33,7 @@ class StudentValidationTest {
         studentDTO.setBirthday(birthday);
         studentDTO.setCourseId(courseId);
 
-        assertDoesNotThrow(() -> StudentValidation.onCreate(studentDTO));
+        assertDoesNotThrow(() -> StudentValidation.validateCreate(studentDTO));
     }
 
     @Test
@@ -50,7 +50,7 @@ class StudentValidationTest {
         AtomicInteger size = new AtomicInteger(0);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onCreate(studentDTO);
+                StudentValidation.validateCreate(studentDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 size.set(inputErrorList.size());
@@ -75,7 +75,7 @@ class StudentValidationTest {
         AtomicBoolean error = new AtomicBoolean(false);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onCreate(studentDTO);
+                StudentValidation.validateCreate(studentDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 inputErrorList.stream()
@@ -103,7 +103,7 @@ class StudentValidationTest {
         AtomicBoolean error = new AtomicBoolean(false);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onCreate(studentDTO);
+                StudentValidation.validateCreate(studentDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 inputErrorList.stream()
@@ -128,7 +128,7 @@ class StudentValidationTest {
         studentDTO.setBirthday(birthday);
         studentDTO.setCourseId(courseId);
 
-        assertDoesNotThrow(() -> StudentValidation.onUpdate(studentDTO));
+        assertDoesNotThrow(() -> StudentValidation.validateUpdate(studentDTO));
     }
 
     @Test
@@ -145,7 +145,7 @@ class StudentValidationTest {
         AtomicInteger size = new AtomicInteger(0);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onUpdate(studentDTO);
+                StudentValidation.validateUpdate(studentDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 size.set(inputErrorList.size());
@@ -167,7 +167,7 @@ class StudentValidationTest {
         studentProfileDTO.setNewPassword(password);
         studentProfileDTO.setBirthday(birthday);
 
-        assertDoesNotThrow(() -> StudentValidation.onUpdateProfile(studentProfileDTO));
+        assertDoesNotThrow(() -> StudentValidation.validateUpdateProfile(studentProfileDTO));
     }
 
     @Test
@@ -184,7 +184,7 @@ class StudentValidationTest {
         AtomicInteger size = new AtomicInteger(0);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onUpdateProfile(studentProfileDTO);
+                StudentValidation.validateUpdateProfile(studentProfileDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 size.set(inputErrorList.size());
@@ -209,7 +209,7 @@ class StudentValidationTest {
         AtomicInteger size = new AtomicInteger(0);
         assertThrows(InvalidFormException.class, () -> {
             try {
-                StudentValidation.onUpdateProfile(studentProfileDTO);
+                StudentValidation.validateUpdateProfile(studentProfileDTO);
             } catch (InvalidFormException e) {
                 List<InputError> inputErrorList = e.getErrors();
                 size.set(inputErrorList.size());
