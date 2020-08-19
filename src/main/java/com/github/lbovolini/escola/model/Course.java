@@ -12,6 +12,9 @@ public class Course {
     private int id;
     private String name;
 
+    //@OneToMany(mappedBy = "course", fetch=FetchType.EAGER)
+    //private List<Student> studentList;
+
     public int getId() {
         return id;
     }

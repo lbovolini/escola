@@ -4,12 +4,10 @@ import com.github.lbovolini.escola.dto.ClassDTO;
 import com.github.lbovolini.escola.dto.DisciplineDTO;
 import com.github.lbovolini.escola.model.Class;
 import com.github.lbovolini.escola.model.Discipline;
-import com.github.lbovolini.escola.util.ClassUtil;
-import com.github.lbovolini.escola.util.DisciplineUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DisciplineRepositoryImpl extends RepositoryBase<Discipline> implements DisciplineRepository {
     @Override
@@ -31,7 +29,7 @@ public class DisciplineRepositoryImpl extends RepositoryBase<Discipline> impleme
 
         Discipline discipline = (Discipline)executeSingle(query, parameters);
 
-        return DisciplineUtil.toDTO(discipline);
+        return ObjectMapper.map(discipline, DisciplineDTO.class);
     }
 
     @Override
@@ -43,14 +41,13 @@ public class DisciplineRepositoryImpl extends RepositoryBase<Discipline> impleme
         parameters.add(disciplinaId);
 
         List<Class> classList = execute(query, parameters);
-        List<ClassDTO> classDTOList = classList.stream().map(ClassUtil::toDTO).collect(Collectors.toList());
 
-        return classDTOList;
+        return ObjectMapper.map(classList, ClassDTO.class);
     }
 
     @Override
     public void save(DisciplineDTO disciplineDTO) {
-        Discipline discipline = DisciplineUtil.toModel(disciplineDTO);
+        Discipline discipline = ObjectMapper.map(disciplineDTO, Discipline.class);
         super.save(discipline);
     }
 
@@ -62,7 +59,7 @@ public class DisciplineRepositoryImpl extends RepositoryBase<Discipline> impleme
             return;
         }
 
-        Discipline discipline = DisciplineUtil.toModel(disciplineDTO);
+        Discipline discipline = ObjectMapper.map(disciplineDTO, Discipline.class);
         super.update(discipline);
     }
 }

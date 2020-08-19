@@ -2,7 +2,7 @@ package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.TeacherDTO;
 import com.github.lbovolini.escola.model.Teacher;
-import com.github.lbovolini.escola.util.TeacherUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class TeacherRepositoryImpl extends RepositoryBase<Teacher> implements Te
 
         Teacher teacher = (Teacher)executeSingle(query, parameters);
 
-        return TeacherUtil.toDTO(teacher);
+        return ObjectMapper.map(teacher, TeacherDTO.class);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TeacherRepositoryImpl extends RepositoryBase<Teacher> implements Te
 
         Teacher teacher = (Teacher)executeSingle(query, parameters);
 
-        return TeacherUtil.toDTO(teacher);
+        return ObjectMapper.map(teacher, TeacherDTO.class);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class TeacherRepositoryImpl extends RepositoryBase<Teacher> implements Te
 
     @Override
     public void save(TeacherDTO teacherDTO) {
-        Teacher teacher = TeacherUtil.toModel(teacherDTO);
+        Teacher teacher = ObjectMapper.map(teacherDTO, Teacher.class);
         super.save(teacher);
     }
 
@@ -65,7 +65,7 @@ public class TeacherRepositoryImpl extends RepositoryBase<Teacher> implements Te
             return;
         }
 
-        Teacher teacher = TeacherUtil.toModel(teacherDTO);
+        Teacher teacher = ObjectMapper.map(teacherDTO, Teacher.class);
         super.update(teacher);
     }
 }

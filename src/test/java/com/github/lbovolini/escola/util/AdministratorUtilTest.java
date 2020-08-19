@@ -20,20 +20,6 @@ class AdministratorUtilTest {
     private final String token = "token";
 
     @Test
-    void shouldConvertAdministratorModelToDTO() {
-        Administrator administrator = new Administrator();
-        administrator.setId(id);
-        administrator.setEmail(email);
-        administrator.setPassword(password);
-
-        AdministratorDTO administratorDTO = AdministratorUtil.toDTO(administrator);
-
-        assertEquals(id, administratorDTO.getId());
-        assertEquals(email, administratorDTO.getEmail());
-        assertEquals(password, administratorDTO.getPassword());
-    }
-
-    @Test
     void shouldConvertAllAttributes() {
 
         Field[] administratorAttributes = Administrator.class.getDeclaredFields();

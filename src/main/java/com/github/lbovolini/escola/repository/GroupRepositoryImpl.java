@@ -2,7 +2,7 @@ package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.GroupDTO;
 import com.github.lbovolini.escola.model.Group;
-import com.github.lbovolini.escola.util.GroupUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +28,12 @@ public class GroupRepositoryImpl extends RepositoryBase<Group> implements GroupR
 
         Group group = (Group)executeSingle(query, parameters);
 
-        return GroupUtil.toDTO(group);
+        return ObjectMapper.map(group, GroupDTO.class);
     }
 
     @Override
     public void save(GroupDTO groupDTO) {
-        Group group = GroupUtil.toModel(groupDTO);
+        Group group = ObjectMapper.map(groupDTO, Group.class);
         super.save(group);
     }
 
@@ -45,7 +45,7 @@ public class GroupRepositoryImpl extends RepositoryBase<Group> implements GroupR
             return;
         }
 
-        Group group = GroupUtil.toModel(groupDTO);
+        Group group = ObjectMapper.map(groupDTO, Group.class);
         super.update(group);
     }
 

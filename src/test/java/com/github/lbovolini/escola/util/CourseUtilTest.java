@@ -14,29 +14,6 @@ class CourseUtilTest {
     private final int id = 1;
     private final String name = "Sistemas de Informação";
 
-    @Test
-    void shouldConvertCourseModelToDTO() {
-        Course course = new Course();
-        course.setId(id);
-        course.setName(name);
-
-        CourseDTO courseDTO = CourseUtil.toDTO(course);
-
-        assertEquals(id, courseDTO.getId());
-        assertEquals(name, courseDTO.getName());
-    }
-
-    @Test
-    void shouldConvertCourseDTOToModel() {
-        CourseDTO courseDTO = new CourseDTO();
-        courseDTO.setId(id);
-        courseDTO.setName(name);
-
-        Course course = CourseUtil.toModel(courseDTO);
-
-        assertEquals(id, course.getId());
-        assertEquals(name, course.getName());
-    }
 
     @Test
     void shouldConvertAllAttributes() {

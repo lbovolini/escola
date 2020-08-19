@@ -29,48 +29,6 @@ class StudentUtilTest {
     }
 
     @Test
-    void shouldConvertStudentModelToDTO() {
-
-        Student student = new Student();
-        student.setId(id);
-        student.setName(name);
-        student.setEmail(email);
-        student.setPassword(password);
-        student.setBirthday(birthday);
-        student.setCursoId(courseId);
-
-        StudentDTO studentDTO = StudentUtil.toDTO(student);
-
-        assertEquals(id, studentDTO.getId());
-        assertEquals(name, studentDTO.getName());
-        assertEquals(email, studentDTO.getEmail());
-        assertEquals(password, studentDTO.getPassword());
-        assertEquals(birthday, studentDTO.getBirthday());
-        assertEquals(courseId, studentDTO.getCourseId());
-    }
-
-    @Test
-    void shouldConvertStudentDTOTOModel() {
-
-        StudentDTO studentDTO = new StudentDTO();
-        studentDTO.setId(id);
-        studentDTO.setName(name);
-        studentDTO.setEmail(email);
-        studentDTO.setPassword(password);
-        studentDTO.setBirthday(birthday);
-        studentDTO.setCourseId(courseId);
-
-        Student student = StudentUtil.toModel(studentDTO);
-
-        assertEquals(id, student.getId());
-        assertEquals(name, student.getName());
-        assertEquals(email, student.getEmail());
-        assertEquals(password, student.getPassword());
-        assertEquals(birthday, student.getBirthday());
-        assertEquals(courseId, student.getCursoId());
-    }
-
-    @Test
     void shouldConvertAllAttributes() {
 
         Field[] studentAttributes = Student.class.getDeclaredFields();

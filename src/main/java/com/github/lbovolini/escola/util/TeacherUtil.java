@@ -2,29 +2,8 @@ package com.github.lbovolini.escola.util;
 
 import com.github.lbovolini.escola.dto.TeacherDTO;
 import com.github.lbovolini.escola.dto.UserDTO;
-import com.github.lbovolini.escola.model.Teacher;
 
 public class TeacherUtil {
-
-    public static TeacherDTO toDTO(Teacher teacher) {
-        TeacherDTO teacherDTO = new TeacherDTO();
-        teacherDTO.setId(teacher.getId());
-        teacherDTO.setName(teacher.getName());
-        teacherDTO.setEmail(teacher.getEmail());
-        teacherDTO.setPassword(teacher.getPassword());
-
-        return teacherDTO;
-    }
-
-    public static Teacher toModel(TeacherDTO teacherDTO) {
-        Teacher teacher = new Teacher();
-        teacher.setId(teacherDTO.getId());
-        teacher.setName(teacherDTO.getName());
-        teacher.setEmail(teacherDTO.getEmail());
-        teacher.setPassword(teacherDTO.getPassword());
-
-        return teacher;
-    }
 
     public static UserDTO toUserDTO(TeacherDTO teacherDTO, String role, String token) {
         UserDTO userDTO = new UserDTO();

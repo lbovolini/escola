@@ -4,12 +4,10 @@ import com.github.lbovolini.escola.dto.DisciplineDTO;
 import com.github.lbovolini.escola.dto.CurriculumDTO;
 import com.github.lbovolini.escola.model.Discipline;
 import com.github.lbovolini.escola.model.Curriculum;
-import com.github.lbovolini.escola.util.DisciplineUtil;
-import com.github.lbovolini.escola.util.CurriculumUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CurriculumRepositoryImpl extends RepositoryBase<Curriculum> implements CurriculumRepository {
     @Override
@@ -31,7 +29,7 @@ public class CurriculumRepositoryImpl extends RepositoryBase<Curriculum> impleme
 
         Curriculum curriculum = (Curriculum)executeSingle(query, parameters);
 
-        return CurriculumUtil.toDTO(curriculum);
+        return ObjectMapper.map(curriculum, CurriculumDTO.class);
     }
 
     @Override
@@ -42,14 +40,13 @@ public class CurriculumRepositoryImpl extends RepositoryBase<Curriculum> impleme
         parameters.add(id);
 
         List<Discipline> disciplineList = execute(query, parameters);
-        List<DisciplineDTO> disciplineDTOList = disciplineList.stream().map(DisciplineUtil::toDTO).collect(Collectors.toList());
 
-        return disciplineDTOList;
+        return ObjectMapper.map(disciplineList, DisciplineDTO.class);
     }
 
     @Override
     public void save(CurriculumDTO curriculumDTO) {
-        Curriculum curriculum = CurriculumUtil.toModel(curriculumDTO);
+        Curriculum curriculum = ObjectMapper.map(curriculumDTO, Curriculum.class);
         super.save(curriculum);
     }
 
@@ -61,7 +58,7 @@ public class CurriculumRepositoryImpl extends RepositoryBase<Curriculum> impleme
             return;
         }
 
-        Curriculum curriculum = CurriculumUtil.toModel(curriculumDTO);
+        Curriculum curriculum = ObjectMapper.map(curriculumDTO, Curriculum.class);
         super.update(curriculum);
     }
 }

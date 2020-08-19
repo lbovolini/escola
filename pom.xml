@@ -93,6 +93,12 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.github.lbovolini</groupId>
+      <artifactId>object-mapper</artifactId>
+      <version>0.2.4</version>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

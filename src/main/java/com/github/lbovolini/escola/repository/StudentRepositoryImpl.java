@@ -7,13 +7,10 @@ import com.github.lbovolini.escola.dto.GroupDTO;
 import com.github.lbovolini.escola.model.Student;
 import com.github.lbovolini.escola.model.Discipline;
 import com.github.lbovolini.escola.model.Group;
-import com.github.lbovolini.escola.util.StudentUtil;
-import com.github.lbovolini.escola.util.DisciplineUtil;
-import com.github.lbovolini.escola.util.GroupUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StudentRepositoryImpl extends RepositoryBase<Student> implements StudentRepository {
 
@@ -36,7 +33,7 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
 
         Student student = (Student)executeSingle(query, parameters);
 
-        return StudentUtil.toDTO(student);
+        return ObjectMapper.map(student, StudentDTO.class);
     }
 
     @Override
@@ -47,7 +44,7 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
 
         Student student = (Student)executeSingle(query, parameters);
 
-        return StudentUtil.toDTO(student);
+        return ObjectMapper.map(student, StudentDTO.class);
     }
 
     @Override
@@ -58,9 +55,8 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
         parameters.add(alunoId);
 
         List<Discipline> disciplineList = execute(query, parameters);
-        List<DisciplineDTO> disciplineDTOList = disciplineList.stream().map(DisciplineUtil::toDTO).collect(Collectors.toList());
 
-        return disciplineDTOList;
+        return ObjectMapper.map(disciplineList, DisciplineDTO.class);
     }
 
     @Override
@@ -83,14 +79,13 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
         parameters.add(alunoId);
 
         List<Group> groupList = execute(query, parameters);
-        List<GroupDTO> groupDTOList = groupList.stream().map(GroupUtil::toDTO).collect(Collectors.toList());
 
-        return groupDTOList;
+        return ObjectMapper.map(groupList, GroupDTO.class);
     }
 
     @Override
     public void save(StudentDTO studentDTO) {
-        Student student = StudentUtil.toModel(studentDTO);
+        Student student = ObjectMapper.map(studentDTO, Student.class);
         super.save(student);
     }
 
@@ -103,7 +98,7 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
             return;
         }
 
-        Student student = StudentUtil.toModel(studentDTO);
+        Student student = ObjectMapper.map(studentDTO, Student.class);
         super.update(student);
     }
 

@@ -2,7 +2,7 @@ package com.github.lbovolini.escola.repository;
 
 import com.github.lbovolini.escola.dto.AdministratorDTO;
 import com.github.lbovolini.escola.model.Administrator;
-import com.github.lbovolini.escola.util.AdministratorUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class AdministratorRepositoryImpl extends RepositoryBase<Administrator> i
 
         Administrator administrator = (Administrator)executeSingle(query, parameters);
 
-        return AdministratorUtil.toDTO(administrator);
+        return ObjectMapper.map(administrator, AdministratorDTO.class);
     }
 
     @Override

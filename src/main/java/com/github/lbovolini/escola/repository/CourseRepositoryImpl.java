@@ -4,12 +4,10 @@ import com.github.lbovolini.escola.dto.CourseDTO;
 import com.github.lbovolini.escola.dto.CurriculumDTO;
 import com.github.lbovolini.escola.model.Course;
 import com.github.lbovolini.escola.model.Curriculum;
-import com.github.lbovolini.escola.util.CourseUtil;
-import com.github.lbovolini.escola.util.CurriculumUtil;
+import com.github.lbovolini.mapper.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CourseRepositoryImpl extends RepositoryBase<Course> implements CourseRepository {
 
@@ -33,7 +31,7 @@ public class CourseRepositoryImpl extends RepositoryBase<Course> implements Cour
 
         Course course = (Course)executeSingle(query, parameters);
 
-        return CourseUtil.toDTO(course);
+        return ObjectMapper.map(course, CourseDTO.class);
     }
 
     @Override
@@ -42,9 +40,7 @@ public class CourseRepositoryImpl extends RepositoryBase<Course> implements Cour
         String query = "SELECT c FROM Course c";
         List<Course> courseList = execute(query);
 
-        List<CourseDTO> courseDTOList = courseList.stream().map(CourseUtil::toDTO).collect(Collectors.toList());
-
-        return courseDTOList;
+        return ObjectMapper.map(courseList, CourseDTO.class);
     }
 
     @Override
@@ -55,14 +51,13 @@ public class CourseRepositoryImpl extends RepositoryBase<Course> implements Cour
         parameters.add(id);
 
         List<Curriculum> curriculumList = execute(query, parameters);
-        List<CurriculumDTO> curriculumDTOList = curriculumList.stream().map(CurriculumUtil::toDTO).collect(Collectors.toList());
 
-        return curriculumDTOList;
+        return ObjectMapper.map(curriculumList, CurriculumDTO.class);
     }
 
     @Override
     public void save(CourseDTO courseDTO) {
-        Course course = CourseUtil.toModel(courseDTO);
+        Course course = ObjectMapper.map(courseDTO, Course.class);
         super.save(course);
     }
 
@@ -75,7 +70,7 @@ public class CourseRepositoryImpl extends RepositoryBase<Course> implements Cour
             return;
         }
 
-        Course course = CourseUtil.toModel(courseDTO);
+        Course course = ObjectMapper.map(courseDTO, Course.class);
         super.update(course);
     }
 }
