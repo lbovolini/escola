@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/api/v1/disciplinas")
+@Path("/api/v1/disciplines")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DisciplineController {
@@ -37,8 +37,8 @@ public class DisciplineController {
     }
 
     @GET
-    @Path("/{id}/aulas/{alunoId}")
-    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("alunoId") int alunoId) {
+    @Path("/{id}/classes/{studentId}")
+    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("studentId") int alunoId) {
         List<ClassDTO> classDTOList = disciplineService.findAulas(disciplinaId, alunoId);
         return Response.ok().entity(classDTOList).build();
     }

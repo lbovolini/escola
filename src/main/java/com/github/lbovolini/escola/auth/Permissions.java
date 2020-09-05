@@ -47,29 +47,29 @@ public class Permissions {
 
     static {
         // AlunoController
-        permissions.put("/alunos", new Permission("POST", "", "*"));
-        permissions.put("/alunos/id", new Permission("GET", "GET", "*"));
-        permissions.put("/alunos/id/disciplinas", new Permission("GET", "GET", "*"));
-        permissions.put("/alunos/id/turmas", new Permission("GET", "GET", "*"));
-        permissions.put("/alunos/profile", new Permission("PUT", "", "*"));
+        permissions.put("/students", new Permission("POST", "", "*"));
+        permissions.put("/students/id", new Permission("GET", "GET", "*"));
+        permissions.put("/students/id/disciplines", new Permission("GET", "GET", "*"));
+        permissions.put("/students/id/groups", new Permission("GET", "GET", "*"));
+        permissions.put("/students/profile", new Permission("PUT", "", "*"));
         // CursoController
-        permissions.put("/cursos", new Permission("GET", "GET PUT", "*"));
-        permissions.put("/cursos/id", new Permission("GET", "GET", "*"));
-        permissions.put("/cursos/gradesCurriculares/id", new Permission("GET", "GET", "*"));
+        permissions.put("/courses", new Permission("GET", "GET PUT", "*"));
+        permissions.put("/courses/id", new Permission("GET", "GET", "*"));
+        permissions.put("/courses/curriculum/id", new Permission("GET", "GET", "*"));
         // DisciplinaController
-        permissions.put("/disciplinas", new Permission("", "POST PUT", "*"));
-        permissions.put("/disciplinas/id", new Permission("GET", "DELETE GET", "*"));
-        permissions.put("/disciplinas/id/aulas/id", new Permission("GET", "GET", "*"));
+        permissions.put("/disciplines", new Permission("", "POST PUT", "*"));
+        permissions.put("/disciplines/id", new Permission("GET", "DELETE GET", "*"));
+        permissions.put("/disciplines/id/classes/id", new Permission("GET", "GET", "*"));
         // GradeCurricularController
-        permissions.put("/gradescurriculares", new Permission("", "POST PUT", "*"));
-        permissions.put("/gradescurriculares/id", new Permission("GET", "DELETE GET", "*"));
-        permissions.put("/gradescurriculares/id/disciplinas", new Permission("GET", "GET", "*"));
+        permissions.put("/curriculum", new Permission("", "POST PUT", "*"));
+        permissions.put("/curriculum/id", new Permission("GET", "DELETE GET", "*"));
+        permissions.put("/curriculum/id/disciplines", new Permission("GET", "GET", "*"));
         // ProfessorController
-        permissions.put("/professores", new Permission("", "POST PUT", "*"));
-        permissions.put("/professores/id", new Permission("", "GET", "*"));
+        permissions.put("/teachers", new Permission("", "POST PUT", "*"));
+        permissions.put("/teachers/id", new Permission("", "GET", "*"));
         // TurmaController
-        permissions.put("/turmas", new Permission("GET", "GET POST PUT", "*"));
-        permissions.put("/turmas/id", new Permission("GET", "DELETE GET", "*"));
+        permissions.put("/groups", new Permission("GET", "GET POST PUT", "*"));
+        permissions.put("/groups/id", new Permission("GET", "DELETE GET", "*"));
     }
 
     public static boolean isAuthorized(String path, String method, String role) {

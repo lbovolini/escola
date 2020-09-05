@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/api/v1/cursos")
+@Path("/api/v1/courses")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class CourseController {
@@ -44,7 +44,7 @@ public class CourseController {
     }
 
     @GET
-    @Path("/gradesCurriculares/{id}")
+    @Path("/curriculum/{id}")
     public Response findGrandesCurriculares(@PathParam("id") int id) {
         List<CurriculumDTO> curriculumDTOList = courseService.findGrandesCurriculares(id);
         return Response.ok().entity(curriculumDTOList).build();

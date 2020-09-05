@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/api/v1/alunos")
+@Path("/api/v1/students")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class StudentController {
@@ -39,14 +39,14 @@ public class StudentController {
     }
 
     @GET
-    @Path("/{id}/disciplinas")
+    @Path("/{id}/disciplines")
     public Response findDisciplinas(@PathParam("id") int id) {
         List<DisciplineDTO> disciplineDTOList = studentService.findDisciplinas(id);
         return Response.ok().entity(disciplineDTOList).build();
     }
 
     @GET
-    @Path("/{id}/turmas")
+    @Path("/{id}/groups")
     public Response findTurmas(@PathParam("id") int id) {
         List<GroupDTO> groupDTOList = studentService.findTurmas(id);
         return Response.ok().entity(groupDTOList).build();
