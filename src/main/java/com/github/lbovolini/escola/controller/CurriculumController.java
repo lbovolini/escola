@@ -11,6 +11,8 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/api/v1/gradescurriculares")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class CurriculumController {
 
     private final CurriculumService curriculumService;
@@ -22,7 +24,6 @@ public class CurriculumController {
 
     @DELETE
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         curriculumService.delete(id);
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -30,7 +31,6 @@ public class CurriculumController {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
         CurriculumDTO curriculumDTO = curriculumService.find(id);
         return Response.ok().entity(curriculumDTO).build();
@@ -38,23 +38,18 @@ public class CurriculumController {
 
     @GET
     @Path("/{id}/disciplinas")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response findDisciplinas(@PathParam("id") int id) {
         List<DisciplineDTO> disciplineDTOList = curriculumService.findDisciplinas(id);
         return Response.ok().entity(disciplineDTOList).build();
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response save(CurriculumDTO curriculumDTO) {
         curriculumService.save(curriculumDTO);
         return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response update(CurriculumDTO curriculumDTO) {
         curriculumService.update(curriculumDTO);
         return Response.ok().build();

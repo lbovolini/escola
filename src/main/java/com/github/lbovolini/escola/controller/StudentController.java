@@ -13,6 +13,8 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/api/v1/alunos")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class StudentController {
 
     private final StudentService studentService;
@@ -24,7 +26,6 @@ public class StudentController {
 
     @DELETE
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         studentService.delete(id);
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -32,7 +33,6 @@ public class StudentController {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
         StudentDTO studentDTO = studentService.find(id);
         return Response.ok().entity(studentDTO).build();
@@ -40,7 +40,6 @@ public class StudentController {
 
     @GET
     @Path("/{id}/disciplinas")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response findDisciplinas(@PathParam("id") int id) {
         List<DisciplineDTO> disciplineDTOList = studentService.findDisciplinas(id);
         return Response.ok().entity(disciplineDTOList).build();
@@ -48,23 +47,18 @@ public class StudentController {
 
     @GET
     @Path("/{id}/turmas")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response findTurmas(@PathParam("id") int id) {
         List<GroupDTO> groupDTOList = studentService.findTurmas(id);
         return Response.ok().entity(groupDTOList).build();
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response save(final StudentDTO studentDto) {
         studentService.save(studentDto);
         return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response update(final StudentDTO studentDto) {
         studentService.update(studentDto);
         return Response.ok().build();
@@ -72,8 +66,6 @@ public class StudentController {
 
     @PUT
     @Path("/profile")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response updateProfile(StudentProfileDTO studentProfileDTO) {
         studentService.updateProfile(studentProfileDTO);
         return Response.ok().build();

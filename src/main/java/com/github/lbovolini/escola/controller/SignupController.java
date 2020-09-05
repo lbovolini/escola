@@ -12,6 +12,8 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/signup")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class SignupController {
 
     private final CourseService courseService;
@@ -25,7 +27,6 @@ public class SignupController {
 
     @GET
     @Path("/courses")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response findAllCourses()
     {
         List<CourseDTO> courseDTOList = courseService.findAll();
@@ -34,8 +35,6 @@ public class SignupController {
 
     @POST
     @Path("/students")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response saveStudent(final StudentDTO studentDto) {
         studentService.save(studentDto);
         return Response.ok().build();

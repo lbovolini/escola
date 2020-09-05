@@ -9,6 +9,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/api/v1/turmas")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class GroupController {
 
     private final GroupService groupService;
@@ -20,7 +22,6 @@ public class GroupController {
 
     @DELETE
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         groupService.delete(id);
         return Response.status(Response.Status.NO_CONTENT).build();
@@ -28,23 +29,18 @@ public class GroupController {
 
     @GET
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response find(@PathParam("id") int id) {
         GroupDTO groupDTO = groupService.find(id);
         return Response.ok().entity(groupDTO).build();
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response save(GroupDTO groupDTO) {
         groupService.save(groupDTO);
         return Response.status(Response.Status.CREATED).build();
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response update(GroupDTO groupDTO) {
         groupService.update(groupDTO);
         return Response.ok().build();

@@ -12,11 +12,12 @@ import com.github.lbovolini.escola.util.TeacherUtil;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -28,8 +29,6 @@ public class AuthenticationController {
 
     @POST
     @Path("administrator/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response administratorLogin(Credentials credentials) {
         AdministratorDTO administratorDTO = authenticationService.validateAdministrator(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
@@ -39,8 +38,6 @@ public class AuthenticationController {
 
     @POST
     @Path("student/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response studentLogin(Credentials credentials) {
         StudentDTO studentDTO = authenticationService.validateStudent(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
@@ -50,8 +47,6 @@ public class AuthenticationController {
 
     @POST
     @Path("teacher/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response teacherLogin(Credentials credentials) {
         TeacherDTO teacherDTO = authenticationService.validateTeacher(credentials);
         String token = authenticationService.generateToken(credentials.getEmail(), credentials.getRole());
