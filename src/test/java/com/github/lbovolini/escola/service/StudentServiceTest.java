@@ -1,5 +1,6 @@
 package com.github.lbovolini.escola.service;
 
+import com.github.lbovolini.escola.dto.GroupDTO;
 import com.github.lbovolini.escola.dto.StudentDTO;
 import com.github.lbovolini.escola.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,16 @@ class StudentServiceTest {
     }
 
     @Test
+    void shouldDeleteStudent() {
+        StudentRepository studentRepository = mock(StudentRepository.class);
+
+        StudentService studentService = new StudentService(studentRepository);
+        studentService.delete(1);
+
+        verify(studentRepository).delete(1);
+    }
+
+    @Test
     void shouldFindStudentById() {
 
         StudentRepository studentRepository = mock(StudentRepository.class);
@@ -40,6 +51,23 @@ class StudentServiceTest {
         StudentService studentService = new StudentService(studentRepository);
         StudentDTO s = studentService.find(1);
         assertEquals(studentDTO, s);
+    }
+
+    @Test
+    void shouldFindGroups() {
+
+        GroupDTO groupDTO = new GroupDTO();
+        groupDTO.setId(1);
+        groupDTO.setNumber("1");
+        groupDTO.setCourseId(1);
+
+        List<GroupDTO> groupDTOList = new ArrayList<>();
+
+        StudentRepository studentRepository = mock(StudentRepository.class);
+        when(studentRepository.findGroups(1)).thenReturn(groupDTOList);
+
+        StudentService studentService = new StudentService(studentRepository);
+        assertEquals(groupDTOList, studentService.findGroups(1));
     }
 
     @Test
@@ -52,4 +80,15 @@ class StudentServiceTest {
 
         verify(studentRepository).save(studentDTO);
     }
+
+    @Test
+    void shouldUpdateStudent() {
+        StudentRepository studentRepository = mock(StudentRepository.class);
+
+        StudentService studentService = new StudentService(studentRepository);
+        studentService.update(studentDTO);
+
+        verify(studentRepository).update(studentDTO);
+    }
+
 }
