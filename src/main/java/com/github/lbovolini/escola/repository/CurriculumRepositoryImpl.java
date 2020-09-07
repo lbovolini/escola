@@ -33,7 +33,7 @@ public class CurriculumRepositoryImpl extends RepositoryBase<Curriculum> impleme
     }
 
     @Override
-    public List<DisciplineDTO> findDisciplinas(int id) {
+    public List<DisciplineDTO> findDisciplines(int id) {
         String query = "SELECT d FROM Discipline d JOIN DisciplineCurriculum dgc ON d.id = dgc.disciplineId JOIN Curriculum g ON g.id = dgc.curriculumId WHERE g.id = ?1";
 
         List parameters = new ArrayList();

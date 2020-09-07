@@ -41,14 +41,14 @@ public class StudentController {
     @GET
     @Path("/{id}/disciplines")
     public Response findDisciplinas(@PathParam("id") int id) {
-        List<DisciplineDTO> disciplineDTOList = studentService.findDisciplinas(id);
+        List<DisciplineDTO> disciplineDTOList = studentService.findDisciplines(id);
         return Response.ok().entity(disciplineDTOList).build();
     }
 
     @GET
     @Path("/{id}/groups")
     public Response findTurmas(@PathParam("id") int id) {
-        List<GroupDTO> groupDTOList = studentService.findTurmas(id);
+        List<GroupDTO> groupDTOList = studentService.findGroups(id);
         return Response.ok().entity(groupDTOList).build();
     }
 

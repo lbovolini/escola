@@ -24,8 +24,8 @@ public class CurriculumService {
         return curriculumRepository.find(id);
     }
 
-    public List<DisciplineDTO> findDisciplinas(int id) {
-        return curriculumRepository.findDisciplinas(id);
+    public List<DisciplineDTO> findDisciplines(int id) {
+        return curriculumRepository.findDisciplines(id);
     }
 
     public void save(CurriculumDTO curriculumDTO) {

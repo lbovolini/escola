@@ -13,7 +13,7 @@ public interface CourseRepository {
 
     List<CourseDTO> findAll();
 
-    List<CurriculumDTO> findGrandesCurriculares(int id);
+    List<CurriculumDTO> findCurriculum(int id);
 
     void save(CourseDTO courseDTO);
 

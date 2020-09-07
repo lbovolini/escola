@@ -48,7 +48,7 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
     }
 
     @Override
-    public List<DisciplineDTO> findDisciplinas(int alunoId) {
+    public List<DisciplineDTO> findDisciplines(int alunoId) {
         String query = "SELECT d FROM Enrollment m JOIN Discipline d ON m.disciplineId = d.id JOIN Student a ON m.studentId = a.id WHERE a.id = ?1";
 
         List parameters = new ArrayList();
@@ -72,7 +72,7 @@ public class StudentRepositoryImpl extends RepositoryBase<Student> implements St
     }
 
     @Override
-    public List<GroupDTO> findTurmas(int alunoId) {
+    public List<GroupDTO> findGroups(int alunoId) {
         String query = "SELECT t FROM StudentGroup at JOIN Group t ON at.groupId = t.id JOIN Student a ON a.id = at.studentId WHERE a.id = ?1";
 
         List parameters = new ArrayList();

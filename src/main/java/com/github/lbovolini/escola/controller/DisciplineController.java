@@ -38,8 +38,8 @@ public class DisciplineController {
 
     @GET
     @Path("/{id}/classes/{studentId}")
-    public Response findAulas(@PathParam("id") int disciplinaId, @PathParam("studentId") int alunoId) {
-        List<ClassDTO> classDTOList = disciplineService.findAulas(disciplinaId, alunoId);
+    public Response findClasses(@PathParam("id") int disciplinaId, @PathParam("studentId") int alunoId) {
+        List<ClassDTO> classDTOList = disciplineService.findClasses(disciplinaId, alunoId);
         return Response.ok().entity(classDTOList).build();
     }
 

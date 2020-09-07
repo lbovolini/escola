@@ -44,7 +44,7 @@ public class CourseRepositoryImpl extends RepositoryBase<Course> implements Cour
     }
 
     @Override
-    public List<CurriculumDTO> findGrandesCurriculares(int id) {
+    public List<CurriculumDTO> findCurriculum(int id) {
         String query = "SELECT gc FROM Curriculum gc WHERE gc.courseId = ?1";
 
         List parameters = new ArrayList();

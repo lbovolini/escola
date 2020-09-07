@@ -38,8 +38,8 @@ public class CurriculumController {
 
     @GET
     @Path("/{id}/disciplines")
-    public Response findDisciplinas(@PathParam("id") int id) {
-        List<DisciplineDTO> disciplineDTOList = curriculumService.findDisciplinas(id);
+    public Response findDisciplines(@PathParam("id") int id) {
+        List<DisciplineDTO> disciplineDTOList = curriculumService.findDisciplines(id);
         return Response.ok().entity(disciplineDTOList).build();
     }
 

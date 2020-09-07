@@ -45,8 +45,8 @@ public class CourseController {
 
     @GET
     @Path("/curriculum/{id}")
-    public Response findGrandesCurriculares(@PathParam("id") int id) {
-        List<CurriculumDTO> curriculumDTOList = courseService.findGrandesCurriculares(id);
+    public Response findCurriculum(@PathParam("id") int id) {
+        List<CurriculumDTO> curriculumDTOList = courseService.findCurriculum(id);
         return Response.ok().entity(curriculumDTOList).build();
     }
 

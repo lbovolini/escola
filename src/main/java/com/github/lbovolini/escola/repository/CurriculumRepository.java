@@ -11,7 +11,7 @@ public interface CurriculumRepository {
 
     CurriculumDTO find(int id);
 
-    List<DisciplineDTO> findDisciplinas(int id);
+    List<DisciplineDTO> findDisciplines(int id);
 
     void save(CurriculumDTO curriculumDTO);
 

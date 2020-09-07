@@ -29,12 +29,12 @@ public class StudentService {
         return studentRepository.find(id);
     }
 
-    public List<DisciplineDTO> findDisciplinas(int id) {
-        return studentRepository.findDisciplinas(id);
+    public List<DisciplineDTO> findDisciplines(int id) {
+        return studentRepository.findDisciplines(id);
     }
 
-    public List<GroupDTO> findTurmas(int alunoId) {
-        return studentRepository.findTurmas(alunoId);
+    public List<GroupDTO> findGroups(int alunoId) {
+        return studentRepository.findGroups(alunoId);
     }
 
     public void save(StudentDTO studentDTO) {

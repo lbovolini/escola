@@ -29,8 +29,8 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public List<CurriculumDTO> findGrandesCurriculares(int id) {
-        return courseRepository.findGrandesCurriculares(id);
+    public List<CurriculumDTO> findCurriculum(int id) {
+        return courseRepository.findCurriculum(id);
     }
 
     public void save(CourseDTO courseDto) {

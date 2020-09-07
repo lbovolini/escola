@@ -33,7 +33,7 @@ public class DisciplineRepositoryImpl extends RepositoryBase<Discipline> impleme
     }
 
     @Override
-    public List<ClassDTO> findAulas(int disciplinaId, int alunoId) {
+    public List<ClassDTO> findClasses(int disciplinaId, int alunoId) {
         String query = "SELECT a FROM Class a JOIN Group t ON a.groupId = t.id JOIN StudentGroup at ON at.groupId = t.id WHERE at.studentId = ?1 AND a.disciplineId = ?2";
 
         List parameters = new ArrayList();

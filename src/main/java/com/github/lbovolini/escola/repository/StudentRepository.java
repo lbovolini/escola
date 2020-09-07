@@ -15,11 +15,11 @@ public interface StudentRepository {
 
     StudentDTO findByEmail(String email);
 
-    List<DisciplineDTO> findDisciplinas(int id);
+    List<DisciplineDTO> findDisciplines(int id);
 
     String findPassword(String email);
 
-    List<GroupDTO> findTurmas(int id);
+    List<GroupDTO> findGroups(int id);
 
     void save(StudentDTO aluno);
 
